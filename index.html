@@ -115,18 +115,21 @@
             z-index: 2;
         }
 
-        .cta-header {
+            .cta-header {
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
-            padding: 0.875rem 2rem;
+            padding: 0.5rem 1.5rem; /* smaller padding */
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 25px;    /* less rounded, fits better */
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;      /* slightly smaller font */
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
             position: relative;
             overflow: hidden;
+            max-height: 36px;       /* cap max height */
+            line-height: 1.2;
+            box-sizing: border-box;
         }
 
         .cta-header::before {
@@ -337,8 +340,8 @@
         }
 
         .profile-placeholder {
-            width: 280px;
-            height: 280px;
+            width: 380px;
+            height: 380px;
             border-radius: 50%;
             background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
             display: flex;
@@ -352,6 +355,13 @@
             position: relative;
             overflow: hidden;
         }
+
+        .profile-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* makes sure it fills without stretching */
+            object-position: center 30%; /* adjust focus: top/bottom */
+        }           
 
         .profile-placeholder::before {
             content: '';
@@ -837,8 +847,8 @@
             </div>
         </div>
         <div class="container">
-            <div class="hero-content">
-                <h1>Turn Your Business Data into Smart Decisions</h1>
+            <div class="hero-content">  
+                <h1>Drive Your Business with Smart, Data-Driven Decisions</h1>
                 <p class="hero-subtitle">I'm Gabriel — A freelance data professional helping businesses unlock insights and value from data through proven methodologies and cutting-edge technologies.</p>
                 <a href="https://calendly.com/gabrielrdavid/30min" class="hero-cta">Book a Free Call</a>
             </div>
@@ -852,7 +862,7 @@
                 <div class="about-grid">
                     <div class="about-image">
                         <div class="profile-placeholder">
-                          <img src="https://avatars.githubusercontent.com/u/3430744?s=400&u=21bd1b0688add9b25f9d0a0e4ec1bcfea1671149&v=4" alt="Profile" />
+                          <img src="3430744.jpg" alt="Profile" />
                             </div>
                         <h3 style="color: #6366f1; font-weight: 700; font-size: 1.4rem;">Gabriel</h3>
                         <p style="color: #64748b; font-size: 1.1rem;">Data Professional</p>
@@ -861,84 +871,48 @@
                     <div class="about-content">
                         <h2>About Gabriel</h2>
                         <p class="about-intro">
-                            Dynamic and results-driven Data Analyst with over a decade of experience in Security Information, Data Analytics, and Customer-Facing Solutions. 
-                            Proven expertise in delivering actionable insights, automating data pipelines, and optimizing analytics for security-critical environments. 
-                            Strong technical background in Python, SQL, ETL processes, dashboarding (Tableau, Kibana), and cloud-based data workflows. 
-                            Skilled at bridging the gap between business needs and technical execution, with a track record of leading POCs, improving process and supporting product innovation. 
-                            Adept at cross-functional collaboration, working with Engineering, Product, and Customers Service teams to deliver data-driven strategies and scalable analytics solutions.
+                            Based in Portugal, I am a Computer Scientist with a Master’s in Artificial Intelligence from ISEP Portugal and over a decade of experience in data analytics, cybersecurity, and customer-centric solutions. 
+                            I specialize in transforming complex data into clear, actionable insights by automating data pipelines and designing impactful, intuitive dashboards. Proficient in Python and SQL, I deliver robust technical solutions such as anomaly detection, process automation, and real-time monitoring — empowering small and medium-sized companies to boost efficiency, and make confident, data-driven decisions with ease.
                         </p>
-                        
-                        <div class="cv-section">
-                            <h3>Professional Experience</h3>
-                            
-                            <div class="cv-item fade-in-up">
-                                <h4>Data Consultant</h4>
-                                <div class="company-period">DrivenB • 2022 - Present</div>
-                                <p>Leading data transformation projects for businesses across various industries. Specializing in predictive analytics, process automation, and strategic data initiatives.</p>
-                            </div>
-                            
-                            <div class="cv-item fade-in-up">
-                                <h4>Data Analyst</h4>
-                                <div class="company-period">Previous Company • 2020 - 2022</div>
-                                <p>Developed machine learning models and automated reporting systems. Led cross-functional teams in implementing data-driven solutions.</p>
-                            </div>
-                            
-                            <div class="cv-item fade-in-up">
-                                <h4>Customer Service Engineer</h4>
-                                <div class="company-period">Analytics Firm • 2018 - 2020</div>
-                                <p>Created comprehensive dashboards and KPI tracking systems. Collaborated with stakeholders to identify key business metrics and reporting requirements.</p>
-                            </div>
-
-                            <div class="cv-item fade-in-up">
-                                <h4>Data Analyst for Fraud Prevention</h4>
-                                <div class="company-period">Analytics Firm • 2018 - 2020</div>
-                                <p>Created comprehensive dashboards and KPI tracking systems. Collaborated with stakeholders to identify key business metrics and reporting requirements.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="cv-section">
-                            <h3>Education & Certifications</h3>
-                            
-                            <div class="cv-item fade-in-up">
-                                <h4>Master's in Artificial Inteligence</h4>
-                                <div class="company-period">ISEP • 2024</div>
-                                <p>Specialized in machine learning, statistical analysis, and big data technologies.</p>
-                            </div>
-                            
-                            <div class="cv-item fade-in-up">
-                                <h4>Nano Degree in Data Science</h4>
-                                <div class="company-period">Udacity • 2019</div>
-                                <p>Foundation in Machine Learning, Data Analysis, algorithms..</p>
-                            </div>
-
-                                <div class="cv-item fade-in-up">
-                                <h4>Pos Graduated in IT Management</h4>
-                                <div class="company-period">SENAC • 2017</div>
-                                <p>Foundation in Machine Learning, Data Analysis, algorithms..</p>
-                            </div>
-                                    <div class="cv-item fade-in-up">
-                                <h4>Graduated in Computer Science</h4>
-                                <div class="company-period">UNIP • 2015</div>
-                                <p>Foundation in Machine Learning, Data Analysis, algorithms..</p>
-                            </div>
-                            
-                        </div>
-                        
+                                               
                         <div class="cv-section">
                             <h3>Technical Skills</h3>
                             <div class="skills-grid">
-                                <div class="skill-tag">Python</div>
-                                <div class="skill-tag">R</div>
-                                <div class="skill-tag">SQL</div>
-                                <div class="skill-tag">Tableau</div>
-                                <div class="skill-tag">Power BI</div>
-                                <div class="skill-tag">Machine Learning</div>
-                                <div class="skill-tag">TensorFlow</div>
-                                <div class="skill-tag">AWS</div>
-                                <div class="skill-tag">Docker</div>
-                                <div class="skill-tag">Git</div>
-                                <div class="skill-tag">Apache Spark</div>
-                                <div class="skill-tag">MongoDB</div>
+                                     <div class="skill-tag">Python</div>
+                                        <div class="skill-tag">Pandas</div>
+                                        <div class="skill-tag">Scikit-learn</div>
+                                        <div class="skill-tag">Matplotlib</div>
+                                        <div class="skill-tag">n8n</div>
+                                        <div class="skill-tag">SQL</div>
+                                        <div class="skill-tag">Clickhouse</div>
+                                        <div class="skill-tag">MySQL</div>
+                                        <div class="skill-tag">PostgreSQL</div>
+                                        <div class="skill-tag">MongoDB</div>
+                                        <div class="skill-tag">Regex</div>
+                                        <div class="skill-tag">LLMs</div>
+                                        <div class="skill-tag">NLP Techniques</div>
+                                        <div class="skill-tag">Machine Learning</div>
+                                        <div class="skill-tag">Anomaly Detection</div>
+                                        <div class="skill-tag">Autoencoders</div>
+                                        <div class="skill-tag">Isolation Forest</div>
+                                        <div class="skill-tag">One-Class SVM</div>
+                                        <div class="skill-tag">Tableau</div>
+                                        <div class="skill-tag">Power BI</div>
+                                        <div class="skill-tag">Kibana</div>
+                                        <div class="skill-tag">Grafana</div>
+                                        <div class="skill-tag">Docker</div>
+                                        <div class="skill-tag">Azure</div>
+                                        <div class="skill-tag">AWS</div>
+                                        <div class="skill-tag">VMware</div>
+                                        <div class="skill-tag">ESXi</div>
+                                        <div class="skill-tag">VirtualBox</div>
+                                        <div class="skill-tag">Git</div>
+                                        <div class="skill-tag">GitLab</div>
+                                        <div class="skill-tag">Apache Spark</div>
+                                        <div class="skill-tag">Airflow</div>
+                                        <div class="skill-tag">ETL</div>
+                                        <div class="skill-tag">Jira</div>
+                                        <div class="skill-tag">Confluence</div>
                             </div>
                         </div>
                     </div>
