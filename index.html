@@ -3,1180 +3,793 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DrivenB - Driven Your Business Data into Smart Decisions</title>
-    <meta name="description" content="Gabriel, a freelance data professional, helps businesses unlock insights and value from data through proven data-driven processes.">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <title>GH Electrical & Automation — Porto</title>
+    <meta name="description" content="Premium electrical installations and home automation for luxury residences in the Porto region.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --stone-950: #0c0b09;
+            --stone-900: #1a1814;
+            --stone-800: #2a2720;
+            --stone-700: #3d3930;
+            --stone-500: #7a7468;
+            --stone-300: #c4bfb5;
+            --stone-100: #f0ede8;
+            --gold: #c9a84c;
+            --gold-light: #e4c97a;
+            --white: #faf8f5;
+            --electric: #00d4ff;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #0f172a;
-            background: #ffffff;
+            font-family: 'Barlow', sans-serif;
+            background: var(--stone-950);
+            color: var(--stone-100);
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Enhanced Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        body::before {
+            content: '';
             position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
         }
 
-        nav {
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            padding: 1.4rem 2.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            transition: background 0.5s, border-bottom 0.5s;
         }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
+        header.scrolled {
+            background: rgba(12,11,9,0.96);
+            border-bottom: 1px solid rgba(201,168,76,0.2);
+            backdrop-filter: blur(14px);
         }
-
+        .header-left { display: flex; align-items: center; gap: 2rem; }
         .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
-        }
-
-        .social-links {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-            color: #6366f1;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1.2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            border-radius: 50%;
-        }
-
-        .social-link:hover::before {
-            opacity: 1;
-        }
-
-        .social-link:hover {
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
-        }
-
-        .social-link svg {
-            position: relative;
-            z-index: 2;
-        }
-
-            .cta-header {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            padding: 0.5rem 1.5rem; /* smaller padding */
-            text-decoration: none;
-            border-radius: 25px;    /* less rounded, fits better */
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
             font-weight: 600;
-            font-size: 0.9rem;      /* slightly smaller font */
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            letter-spacing: 0.05em;
+            color: var(--white);
+        }
+        .logo span { color: var(--gold); }
+
+        /* LANG SWITCH */
+        .lang-switch {
+            display: flex;
+            align-items: stretch;
+            border: 1px solid rgba(201,168,76,0.35);
+            overflow: visible;
+            height: 32px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--stone-500);
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0 1rem;
+            cursor: pointer;
+            transition: background 0.25s, color 0.25s;
             position: relative;
-            overflow: hidden;
-            max-height: 36px;       /* cap max height */
-            line-height: 1.2;
-            box-sizing: border-box;
+            white-space: nowrap;
         }
-
-        .cta-header::before {
-            content: '';
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--stone-950);
+        }
+        .lang-divider {
+            width: 1px;
+            background: rgba(201,168,76,0.35);
+            flex-shrink: 0;
+        }
+        /* EN badge */
+        .lang-btn[data-lang="en"] .en-badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--electric);
+            background: rgba(0,212,255,0.12);
+            border: 1px solid rgba(0,212,255,0.35);
+            padding: 0.12rem 0.4rem;
+            border-radius: 2px;
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .lang-btn[data-lang="en"].active .en-badge {
+            color: var(--stone-950);
+            background: rgba(0,0,0,0.15);
+            border-color: rgba(0,0,0,0.2);
         }
 
-        .cta-header:hover::before {
-            left: 100%;
+        .header-right { display: flex; align-items: center; }
+        .header-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gold);
+            color: var(--stone-950);
+            text-decoration: none;
+            padding: 0.6rem 1.4rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.3s;
+            white-space: nowrap;
         }
+        .header-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+        .header-cta svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-        .cta-header:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
-        }
-
-        /* Animated Hero Section with Data Visualization */
+        /* HERO */
         .hero {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
             position: relative;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
-            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 2.5rem 7rem;
             overflow: hidden;
         }
-
-        .hero-bg {
+        .hero-photo {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1800&q=80') center/cover no-repeat;
+            filter: brightness(0.25) saturate(0.5);
+        }
+        .hero-grad {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(12,11,9,0.05) 0%, rgba(12,11,9,0.5) 50%, var(--stone-950) 100%);
+        }
+        #energyCanvas {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.8;
+            pointer-events: none;
         }
-
-        .data-visualization {
+        .hero-veins {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            inset: 0;
+            background: repeating-linear-gradient(
+                -23deg,
+                transparent, transparent 120px,
+                rgba(201,168,76,0.025) 121px,
+                rgba(201,168,76,0.025) 122px
+            );
         }
-
-        .data-point {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: linear-gradient(45deg, #06b6d4, #3b82f6);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
-        }
-
-        .data-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.6), transparent);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        .grid-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0; transform: scaleX(0); }
-            50% { opacity: 1; transform: scaleX(1); }
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
         .hero-content {
             position: relative;
             z-index: 10;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 820px;
         }
-
+        .hero-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--electric);
+            border: 1px solid rgba(0,212,255,0.35);
+            padding: 0.4rem 1rem;
+            margin-bottom: 2rem;
+            animation: fadeUp 1s ease both;
+            text-shadow: 0 0 12px rgba(0,212,255,0.5);
+        }
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: 800;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7vw, 6.5rem);
+            font-weight: 300;
+            line-height: 1.05;
+            color: var(--white);
             margin-bottom: 2rem;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff, #e2e8f0, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease-out;
+            animation: fadeUp 1s ease 0.15s both;
         }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        .hero h1 em { font-style: italic; color: var(--gold); }
+        .hero-desc {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--stone-300);
+            line-height: 1.7;
+            max-width: 520px;
             margin-bottom: 3rem;
-            opacity: 0.9;
-            line-height: 1.6;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            animation: fadeUp 1s ease 0.3s both;
         }
-
-        .hero-cta {
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            color: white;
-            padding: 1.25rem 3rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin-bottom: 4rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.3);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .hero-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s;
-        }
-
-        .hero-cta:hover::before {
-            left: 100%;
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(6, 182, 212, 0.4);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Enhanced About Section */
-        .about {
-            padding: 120px 0;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
-        }
-
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 6rem;
-            align-items: start;
-        }
-
-        .about-image {
-            text-align: center;
-            padding: 3rem;
-            position: sticky;
-            top: 120px;
-        }
-
-        .profile-placeholder {
-            width: 380px;
-            height: 380px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
+        .hero-actions {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 5rem;
-            font-weight: 800;
-            margin: 0 auto 2rem;
-            box-shadow: 0 25px 60px rgba(99, 102, 241, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* makes sure it fills without stretching */
-            object-position: center 30%; /* adjust focus: top/bottom */
-        }           
-
-        .profile-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .about-content h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            color: #0f172a;
-            letter-spacing: -0.02em;
-        }
-
-        .about-intro {
-            font-size: 1.3rem;
-            color: #475569;
-            margin-bottom: 3rem;
-            line-height: 1.7;
-        }
-
-        .cv-section {
-            margin-bottom: 3rem;
-        }
-
-        .cv-section h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #6366f1;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.75rem;
-            position: relative;
-        }
-
-        .cv-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        }
-
-        .cv-item {
-            margin-bottom: 2rem;
-            padding: 2rem;
-            background: white;
-            border-radius: 16px;
-            border-left: 4px solid #6366f1;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .cv-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .cv-item h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-        }
-
-        .company-period {
-            font-size: 0.95rem;
-            color: #6366f1;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .cv-item p {
-            color: #64748b;
-            line-height: 1.7;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeUp 1s ease 0.45s both;
         }
-
-        .skill-tag {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            padding: 0.75rem 1.25rem;
-            border-radius: 30px;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        /* Enhanced Process Section */
-        .process {
-            padding: 120px 0;
-            background: white;
-            position: relative;
-        }
-
-        .process::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: #0f172a;
-            letter-spacing: -0.02em;
-        }
-
-        .process-subtitle {
-            font-size: 1.3rem;
-            color: #64748b;
-            margin-bottom: 5rem;
-            text-align: center;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .process-step {
-            text-align: left;
-            padding: 3rem;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-        }
-
-        .process-step::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        }
-
-        .process-step:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .step-number {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .step-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #0f172a;
-            line-height: 1.3;
-        }
-
-        .step-description {
-            color: #64748b;
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-
-        /* Enhanced Use Cases Section */
-        .use-cases {
-            padding: 120px 0;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            position: relative;
-        }
-
-        .use-cases::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
-        }
-
-        .use-cases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .use-case {
-            background: white;
-            padding: 3rem;
-            border-radius: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-top: 4px solid #6366f1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .use-case::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(139, 92, 246, 0.02));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .use-case:hover::before {
-            opacity: 1;
-        }
-
-        .use-case:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .use-case h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #0f172a;
-            line-height: 1.3;
-            position: relative;
-            z-index: 2;
-        }
-
-        .use-case p {
-            color: #64748b;
-            line-height: 1.7;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Enhanced CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            color: white;
-            padding: 120px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            animation: pulse-bg 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse-bg {
-            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        .cta-section h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 2;
-            letter-spacing: -0.02em;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            color: white;
-            padding: 1.5rem 3.5rem;
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--gold);
+            color: var(--stone-950);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            display: inline-block;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.3);
+            padding: 1rem 2.2rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.25); }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--stone-300);
+            text-decoration: none;
+            padding: 1rem 2.2rem;
+            font-size: 0.88rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border: 1px solid rgba(196,191,181,0.3);
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .btn-secondary:hover { color: var(--white); border-color: rgba(201,168,76,0.5); }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem; right: 2.5rem;
+            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--stone-500);
+            animation: fadeUp 1s ease 1s both;
+        }
+        .scroll-line {
+            width: 1px; height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+        @keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
+
+        /* DIVIDER */
+        .gold-divider { height: 1px; background: linear-gradient(90deg,transparent,var(--gold),transparent); opacity:.35; }
+
+        /* SECTIONS */
+        section { padding: 7rem 2.5rem; }
+        .section-label { font-size:.7rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+        .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4vw,3.8rem); font-weight:300; line-height:1.15; color:var(--white); margin-bottom:1.5rem; }
+        .section-sub { font-size:1rem; font-weight:300; color:var(--stone-300); line-height:1.7; max-width:540px; }
+
+        /* SERVICES */
+        .services { background: var(--stone-900); }
+        .services-header { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:5rem; }
+        .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(201,168,76,0.12); }
+        .service-card {
+            background: var(--stone-900);
+            padding: 3rem 2.5rem;
             position: relative;
             overflow: hidden;
-            z-index: 2;
+            transition: background 0.4s;
         }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s;
+        .service-card::before {
+            content:''; position:absolute; top:0;left:0;right:0; height:2px;
+            background:var(--gold); transform:scaleX(0); transform-origin:left;
+            transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
         }
+        .service-card:hover::before { transform:scaleX(1); }
+        .service-card:hover { background: var(--stone-800); }
+        .service-icon { width:48px; height:48px; margin-bottom:1.8rem; color:var(--gold); }
+        .service-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.45rem; font-weight:600; color:var(--white); margin-bottom:.9rem; line-height:1.2; }
+        .service-card p { font-size:.88rem; font-weight:300; color:var(--stone-300); line-height:1.7; }
+        .service-num { position:absolute; bottom:1.5rem; right:2rem; font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; color:rgba(201,168,76,0.07); line-height:1; transition:color 0.4s; }
+        .service-card:hover .service-num { color:rgba(201,168,76,0.14); }
 
-        .cta-button:hover::before {
-            left: 100%;
+        /* WHY */
+        .why { background:var(--stone-950); display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; padding:8rem 2.5rem; }
+        .why-image { position:relative; }
+        .why-image img { width:100%; height:560px; object-fit:cover; display:block; filter:brightness(0.82) contrast(1.1); }
+        .why-image::after { content:''; position:absolute; inset:20px -20px -20px 20px; border:1px solid rgba(201,168,76,0.28); z-index:-1; }
+        .why-stats { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; margin-top:3.5rem; }
+        .stat { border-left:2px solid var(--gold); padding-left:1.5rem; }
+        .stat-num { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--gold); line-height:1; margin-bottom:.4rem; }
+        .stat-label { font-size:.78rem; font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--stone-300); }
+
+        /* PROCESS */
+        .process { background:var(--stone-900); }
+        .process-header { text-align:center; margin-bottom:5rem; }
+        .process-header .section-sub { margin:0 auto; }
+        .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+        .process-steps::before { content:''; position:absolute; top:2.5rem; left:12%; right:12%; height:1px; background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.2),var(--gold)); }
+        .process-step { text-align:center; padding:0 2rem; position:relative; z-index:1; }
+        .step-circle { width:52px;height:52px; border:1px solid var(--gold); background:var(--stone-900); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 2rem; font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--gold); }
+        .process-step h4 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:var(--white); margin-bottom:.75rem; }
+        .process-step p { font-size:.85rem; font-weight:300; color:var(--stone-500); line-height:1.6; }
+
+        /* STRIP */
+        .strip { background:var(--gold); padding:3rem 2.5rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+        .strip-text { font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,3vw,2.2rem); font-weight:400; color:var(--stone-950); font-style:italic; flex:1; min-width:260px; }
+        .btn-dark { display:inline-flex; align-items:center; gap:.6rem; background:var(--stone-950); color:var(--gold); text-decoration:none; padding:1rem 2.2rem; font-size:.85rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; transition:background 0.3s; }
+        .btn-dark:hover { background:var(--stone-800); }
+
+        /* CONTACT */
+        .contact { background:var(--stone-950); text-align:center; }
+        .contact .section-sub { margin:0 auto 3rem; text-align:center; }
+        .contact-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+        /* FOOTER */
+        footer { background:var(--stone-900); border-top:1px solid rgba(201,168,76,.15); padding:2.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+        .footer-logo { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--white); }
+        .footer-logo span { color:var(--gold); }
+        footer p { font-size:.78rem; color:var(--stone-500); }
+        footer a { color:var(--stone-500); text-decoration:none; font-size:.78rem; transition:color 0.3s; }
+        footer a:hover { color:var(--gold); }
+
+        /* WHATSAPP */
+        .wa-float { position:fixed; bottom:2rem; right:2rem; z-index:300; display:flex; flex-direction:column; align-items:flex-end; gap:.75rem; }
+        .wa-tooltip { background:var(--stone-800); color:var(--white); font-size:.78rem; padding:.5rem 1rem; border:1px solid rgba(201,168,76,.3); opacity:0; transform:translateX(10px); transition:all 0.3s; pointer-events:none; white-space:nowrap; }
+        .wa-float:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+        .wa-btn { width:60px;height:60px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 32px rgba(37,211,102,.35); transition:transform 0.3s,box-shadow 0.3s; text-decoration:none; }
+        .wa-btn:hover { transform:scale(1.1); box-shadow:0 12px 40px rgba(37,211,102,.45); }
+        .wa-btn svg { width:30px;height:30px;fill:white; }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s ease,transform 0.8s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+
+        /* RESPONSIVE */
+        @media(max-width:1024px){
+            .services-grid{grid-template-columns:repeat(2,1fr)}
+            .why{grid-template-columns:1fr;gap:4rem}
+            .process-steps{grid-template-columns:repeat(2,1fr);gap:3rem}
+            .process-steps::before{display:none}
         }
-
-        .cta-button:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(6, 182, 212, 0.4);
+        @media(max-width:768px){
+            header{padding:1.1rem 1.2rem}
+            .logo{font-size:1.2rem}
+            .header-cta span{display:none}
+            section{padding:5rem 1.5rem}
+            .hero{padding:0 1.5rem 5rem}
+            .services-header{grid-template-columns:1fr;gap:2rem}
+            .services-grid{grid-template-columns:1fr}
+            .why{padding:5rem 1.5rem}
+            .why-image img{height:320px}
+            .why-stats{grid-template-columns:1fr 1fr}
+            .process-steps{grid-template-columns:1fr;gap:2.5rem}
+            footer{flex-direction:column;text-align:center}
         }
-
-        /* Enhanced Footer */
-        footer {
-            background: #0f172a;
-            color: #94a3b8;
-            text-align: center;
-            padding: 3rem 0;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.3), transparent);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-                text-align: center;
-            }
-
-            .about-image {
-                position: static;
-            }
-
-            .process-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-left {
-                flex-direction: column;
-                gap: 1.5rem;
-                align-items: flex-start;
-            }
-
-            .social-links {
-                gap: 0.75rem;
-            }
-
-            .social-link {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-
-            .profile-placeholder {
-                width: 220px;
-                height: 220px;
-                font-size: 4rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .use-cases-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                padding: 0 20px;
-                padding-top: 60px; /* pushes hero content down so it's not hidden behind header */
-
-            }
-
-            .container {
-                padding: 0 20px;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        @media(max-width:480px){
+            .hero h1{font-size:2.5rem}
+            .hero-actions{flex-direction:column}
+            .btn-primary,.btn-secondary{justify-content:center}
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="nav-left">
-                <div class="logo">DrivenB</div>
-                <div class="social-links">
-                    <a href="https://github.com/gabrielhribeiro/" class="social-link" title="GitHub" target="_blank">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                    <a href="https://gabrielhribeiro.medium.com/" class="social-link" title="Medium" target="_blank">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/gabrielheribeiro" class="social-link" title="LinkedIn" target="_blank">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <a href="https://calendly.com/gabrielrdavid/30min" class="cta-header">Book a Free Call</a>
-        </nav>
-    </header>
 
-    <!-- Hero Section with Animated Data Background -->
-    <section class="hero">
-        <div class="hero-bg">
-            <div class="data-visualization">
-                <div class="grid-overlay"></div>
-                <!-- Animated data points and lines will be added via JavaScript -->
-            </div>
+<header id="header">
+    <div class="header-left">
+        <div class="logo">GH<span>.</span></div>
+        <div class="lang-switch">
+            <button class="lang-btn active" data-lang="en">
+                EN
+                <span class="en-badge">★ Native</span>
+            </button>
+            <div class="lang-divider"></div>
+            <button class="lang-btn" data-lang="pt">
+                PT
+            </button>
         </div>
-        <div class="container">
-            <div class="hero-content">  
-                <h1>Drive Your Business with Smart, Data-Driven Decisions</h1>
-                <p class="hero-subtitle">I'm Gabriel — A freelance data professional helping businesses unlock insights and value from data through proven methodologies and cutting-edge technologies.</p>
-                <a href="https://calendly.com/gabrielrdavid/30min" class="hero-cta">Book a Free Call</a>
-            </div>
+    </div>
+    <div class="header-right">
+        <a href="#" class="header-cta" id="header-cta-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.82 10a19.79 19.79 0 01-3.07-8.67A2 2 0 012.73 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91A16 16 0 0013 14l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            <span data-i18n="header_cta">Get a Quote</span>
+        </a>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-photo"></div>
+    <div class="hero-grad"></div>
+    <canvas id="energyCanvas"></canvas>
+    <div class="hero-veins"></div>
+    <div class="hero-content">
+        <div class="hero-label" data-i18n="hero_label">Porto &amp; Greater Porto · Premium Service</div>
+        <h1 data-i18n="hero_title">Electrical &amp;<br><em>Automation</em><br>for Fine Homes</h1>
+        <p class="hero-desc" data-i18n="hero_desc">Certified electrical installations and high-performance smart home systems for premium residences. From design to handover — with precision and elegance.</p>
+        <div class="hero-actions">
+            <a href="#" class="btn-primary" id="wa-hero">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span data-i18n="wa_cta">WhatsApp Us</span>
+            </a>
+            <a href="#services" class="btn-secondary" data-i18n="see_services">View Services</a>
         </div>
-    </section>
+    </div>
+    <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
 
-    <!-- About Section -->
-    <section class="about">
-        <div class="container">
-            <div class="about-container">
-                <div class="about-grid">
-                    <div class="about-image">
-                        <div class="profile-placeholder">
-                          <img src="3430744.jpg" alt="Profile" />
-                            </div>
-                        <h3 style="color: #6366f1; font-weight: 700; font-size: 1.4rem;">Gabriel</h3>
-                        <p style="color: #64748b; font-size: 1.1rem;">Data Professional</p>
-                    </div>
-                    
-                    <div class="about-content">
-                        <h2>About Gabriel</h2>
-                        <p class="about-intro">
-                            Based in Portugal, I am a Computer Scientist with a Master’s in Artificial Intelligence from ISEP Portugal and over a decade of experience in data analytics, cybersecurity, and customer-centric solutions. 
-                            I specialize in transforming complex data into clear, actionable insights by automating data pipelines and designing impactful, intuitive dashboards. Proficient in Python and SQL, I deliver robust technical solutions such as anomaly detection, process automation, and real-time monitoring — empowering small and medium-sized companies to boost efficiency, and make confident, data-driven decisions with ease.
-                        </p>
-                                               
-                        <div class="cv-section">
-                            <h3>Technical Skills</h3>
-                            <div class="skills-grid">
-                                     <div class="skill-tag">Python</div>
-                                        <div class="skill-tag">Pandas</div>
-                                        <div class="skill-tag">Scikit-learn</div>
-                                        <div class="skill-tag">Matplotlib</div>
-                                        <div class="skill-tag">n8n</div>
-                                        <div class="skill-tag">SQL</div>
-                                        <div class="skill-tag">Clickhouse</div>
-                                        <div class="skill-tag">MySQL</div>
-                                        <div class="skill-tag">PostgreSQL</div>
-                                        <div class="skill-tag">MongoDB</div>
-                                        <div class="skill-tag">Regex</div>
-                                        <div class="skill-tag">LLMs</div>
-                                        <div class="skill-tag">NLP Techniques</div>
-                                        <div class="skill-tag">Machine Learning</div>
-                                        <div class="skill-tag">Anomaly Detection</div>
-                                        <div class="skill-tag">Autoencoders</div>
-                                        <div class="skill-tag">Isolation Forest</div>
-                                        <div class="skill-tag">One-Class SVM</div>
-                                        <div class="skill-tag">Tableau</div>
-                                        <div class="skill-tag">Power BI</div>
-                                        <div class="skill-tag">Kibana</div>
-                                        <div class="skill-tag">Grafana</div>
-                                        <div class="skill-tag">Docker</div>
-                                        <div class="skill-tag">Azure</div>
-                                        <div class="skill-tag">AWS</div>
-                                        <div class="skill-tag">VMware</div>
-                                        <div class="skill-tag">ESXi</div>
-                                        <div class="skill-tag">VirtualBox</div>
-                                        <div class="skill-tag">Git</div>
-                                        <div class="skill-tag">GitLab</div>
-                                        <div class="skill-tag">Apache Spark</div>
-                                        <div class="skill-tag">Airflow</div>
-                                        <div class="skill-tag">ETL</div>
-                                        <div class="skill-tag">Jira</div>
-                                        <div class="skill-tag">Confluence</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="gold-divider"></div>
+
+<section class="services" id="services">
+    <div class="services-header reveal">
+        <div>
+            <div class="section-label" data-i18n="services_label">What we do</div>
+            <h2 class="section-title" data-i18n="services_title">Solutions built<br>for your<br>residence</h2>
         </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="process">
-        <div class="container">
-            <div class="process-container">
-                <h2 class="section-title">Data-Driven Solutions: Our Proven 6-Step Approach</h2>
-                <p class="process-subtitle">From discovery to deployment, powered by data</p>
-                
-                <div class="process-grid">
-                    <div class="process-step step-1 fade-in-up">
-                        <div class="step-number">1</div>
-                        <h3 class="step-title">Discovery & Business Objective Definition</h3>
-                        <p class="step-description">Align goals, assess project fit.</p>
-                    </div>
-                    
-                    <div class="process-step step-2 fade-in-up">
-                        <div class="step-number">2</div>
-                        <h3 class="step-title">Proposal & Pricing</h3>
-                        <p class="step-description">Outline scope, costs, deliverables.</p>
-                    </div>
-                    
-                    <div class="process-step step-3 fade-in-up">
-                        <div class="step-number">3</div>
-                        <h3 class="step-title">Data Understanding and Preparation</h3>
-                        <p class="step-description">Gather, clean, explore, validate data.</p>
-                    </div>
-                    
-                    <div class="process-step step-4 fade-in-up">
-                        <div class="step-number">4</div>
-                        <h3 class="step-title">Modeling or Analysis</h3>
-                        <p class="step-description">Build, test, refine data models.</p>
-                    </div>
-                    
-                    <div class="process-step step-5 fade-in-up">
-                        <div class="step-number">5</div>
-                        <h3 class="step-title">Deployment & Integration</h3>
-                        <p class="step-description">Implement final solutions.</p>
-                    </div>
-                    
-                    <div class="process-step step-6 fade-in-up">
-                        <div class="step-number">6</div>
-                        <h3 class="step-title">Evaluation & Client Feedback</h3>
-                        <p class="step-description">Review results, collect feedback.</p>
-                    </div>
-                </div>
-            </div>
+        <p class="section-sub" data-i18n="services_sub">Every project is unique. We work closely with architects, interior designers and homeowners to deliver the perfect result.</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card reveal">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <h3 data-i18n="s1_title">Electrical Installations</h3>
+            <p data-i18n="s1_desc">Full electrical design and installation using premium materials, certified to DGEG standards.</p>
+            <div class="service-num">01</div>
         </div>
-    </section>
-
-    <!-- Use Cases Section -->
-    <section class="use-cases">
-        <div class="container">
-            <h2 class="section-title">Join the Customers That Trust Us and Discover Unlimited Possibilities Through Our Successful Use Cases</h2>
-            <div class="use-cases-grid">
-                <div class="use-case fade-in-up">
-                    <h3>Streamline Process delivering reports</h3>
-                    <p>Automated, standardized, and timely report delivery for data-driven decision-making.</p>
-                </div>
-                
-                <div class="use-case fade-in-up">
-                    <h3>Driven Pattern Recognition for Smarter Business Decisions</h3>
-                    <p>Identify trends and patterns in data, enabling businesses to make faster, more informed decisions powered by real-world insights.</p>
-                </div>
-                
-                <div class="use-case fade-in-up">
-                    <h3>Anomaly Detection</h3>
-                    <p>Identifying unexpected patterns or outliers in data to highlight potential issues or insights.</p>
-                </div>
-                
-                <div class="use-case fade-in-up">
-                    <h3>Talk with your Data</h3>
-                    <p>Use a low-cost local LLM to ask questions, explore patterns, and uncover insights. Listen closely—data reveals smarter decisions.</p>
-                </div>
-                
-                <div class="use-case fade-in-up">
-                    <h3>Chat Automation</h3>
-                    <p>Automating conversational workflows and responses using n8n's no-code integration platform.</p>
-                </div>
-            </div>
+        <div class="service-card reveal">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
+            <h3 data-i18n="s2_title">Smart Home & Automation</h3>
+            <p data-i18n="s2_desc">Control lighting, climate, blinds and security from your phone. KNX, Loxone and Legrand integration.</p>
+            <div class="service-num">02</div>
         </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <h2>Your data journey starts here — schedule a call with an expert.</h2>
-            <a href="https://calendly.com/gabrielrdavid/30min" class="cta-button">Let's Get Started</a>
+        <div class="service-card reveal">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9.663 17h4.673M12 3v1M6.343 6.343l-.707-.707M4 12H3M6.343 17.657l-.707.707M12 21v-1M17.657 17.657l.707.707M21 12h-1M17.657 6.343l.707-.707"/><circle cx="12" cy="12" r="4"/></svg>
+            <h3 data-i18n="s3_title">Designer Lighting</h3>
+            <p data-i18n="s3_desc">Custom lighting design: scenes, warm/cool tuning, premium LED and integration with automation systems.</p>
+            <div class="service-num">03</div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 DrivenB.com. All rights reserved.</p>
+        <div class="service-card reveal">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3 data-i18n="s4_title">Security & CCTV</h3>
+            <p data-i18n="s4_desc">Video surveillance, alarms and access control — all integrated into your smart home network.</p>
+            <div class="service-num">04</div>
         </div>
-    </footer>
+        <div class="service-card reveal">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+            <h3 data-i18n="s5_title">Network & Infrastructure</h3>
+            <p data-i18n="s5_desc">High-speed structured cabling, full Wi-Fi coverage, internal fibre and AV distribution.</p>
+            <div class="service-num">05</div>
+        </div>
+        <div class="service-card reveal">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            <h3 data-i18n="s6_title">Maintenance & Support</h3>
+            <p data-i18n="s6_desc">Preventive maintenance contracts, priority call-out and software updates for existing systems.</p>
+            <div class="service-num">06</div>
+        </div>
+    </div>
+</section>
 
-    <script>
-        // Create animated data visualization
-        function createDataVisualization() {
-            const dataViz = document.querySelector('.data-visualization');
-            const numPoints = 25;
-            const numLines = 15;
+<div class="gold-divider"></div>
 
-            // Create animated data points
-            for (let i = 0; i < numPoints; i++) {
-                const point = document.createElement('div');
-                point.className = 'data-point';
-                point.style.left = Math.random() * 100 + '%';
-                point.style.top = Math.random() * 100 + '%';
-                point.style.animationDelay = Math.random() * 6 + 's';
-                point.style.animationDuration = (4 + Math.random() * 4) + 's';
-                dataViz.appendChild(point);
-            }
+<section class="why">
+    <div class="why-image reveal">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Premium installation" loading="lazy">
+    </div>
+    <div class="why-content">
+        <div class="section-label reveal" data-i18n="why_label">Why choose us</div>
+        <h2 class="section-title reveal" data-i18n="why_title">Precision and<br>elegance in<br>every project</h2>
+        <p class="section-sub reveal" data-i18n="why_sub">Specialists in high-end residences across the Porto region. We use the best materials and technologies, with an obsessive focus on detail and client experience.</p>
+        <div class="why-stats">
+            <div class="stat reveal"><div class="stat-num">10+</div><div class="stat-label" data-i18n="stat1">Years experience</div></div>
+            <div class="stat reveal"><div class="stat-num">200+</div><div class="stat-label" data-i18n="stat2">Projects completed</div></div>
+            <div class="stat reveal"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat3">DGEG certified</div></div>
+            <div class="stat reveal"><div class="stat-num">48h</div><div class="stat-label" data-i18n="stat4">Response guaranteed</div></div>
+        </div>
+    </div>
+</section>
 
-            // Create animated connection lines
-            for (let i = 0; i < numLines; i++) {
-                const line = document.createElement('div');
-                line.className = 'data-line';
-                line.style.left = Math.random() * 100 + '%';
-                line.style.top = Math.random() * 100 + '%';
-                line.style.width = (20 + Math.random() * 60) + '%';
-                line.style.animationDelay = Math.random() * 4 + 's';
-                line.style.animationDuration = (3 + Math.random() * 3) + 's';
-                line.style.transform = `rotate(${Math.random() * 360}deg)`;
-                dataViz.appendChild(line);
+<section class="process">
+    <div class="process-header">
+        <div class="section-label reveal" data-i18n="process_label">How we work</div>
+        <h2 class="section-title reveal" data-i18n="process_title">From first contact<br>to handover</h2>
+        <p class="section-sub reveal" data-i18n="process_sub">A simple, transparent process — no surprises.</p>
+    </div>
+    <div class="process-steps">
+        <div class="process-step reveal"><div class="step-circle">I</div><h4 data-i18n="p1_title">First Contact</h4><p data-i18n="p1_desc">Call or WhatsApp to understand your project and vision.</p></div>
+        <div class="process-step reveal"><div class="step-circle">II</div><h4 data-i18n="p2_title">Site Visit & Quote</h4><p data-i18n="p2_desc">Free technical visit and detailed proposal with no commitment.</p></div>
+        <div class="process-step reveal"><div class="step-circle">III</div><h4 data-i18n="p3_title">Installation</h4><p data-i18n="p3_desc">Precise execution with care and respect for your space.</p></div>
+        <div class="process-step reveal"><div class="step-circle">IV</div><h4 data-i18n="p4_title">Handover & Support</h4><p data-i18n="p4_desc">Training, documentation and ongoing post-installation support.</p></div>
+    </div>
+</section>
+
+<div class="strip">
+    <div class="strip-text" data-i18n="strip_quote">"Your home deserves more than the minimum."</div>
+    <a href="#" class="btn-dark" id="strip-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span data-i18n="schedule_visit">Schedule Free Visit</span>
+    </a>
+</div>
+
+<section class="contact" id="contact">
+    <div class="section-label reveal" data-i18n="contact_label">Contact</div>
+    <h2 class="section-title reveal" data-i18n="contact_title">Ready to start?</h2>
+    <p class="section-sub reveal" data-i18n="contact_sub">Talk to us today. No-obligation quote and free technical visit across the entire Porto region.</p>
+    <div class="contact-actions">
+        <a href="#" class="btn-primary" id="contact-wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span data-i18n="wa_now">WhatsApp Now</span>
+        </a>
+        <a href="mailto:geral@gheletricidade.pt" class="btn-secondary">geral@gheletricidade.pt</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-logo">GH<span>.</span> <span data-i18n="footer_name">Electrical &amp; Automation</span></div>
+    <p>&copy; 2025 · Porto, Portugal</p>
+    <div style="display:flex;gap:1.5rem;">
+        <a href="mailto:geral@gheletricidade.pt">Email</a>
+        <a href="#" id="footer-wa">WhatsApp</a>
+    </div>
+</footer>
+
+<div class="wa-float">
+    <div class="wa-tooltip" data-i18n="wa_tooltip">Talk to us now</div>
+    <a href="#" class="wa-btn" id="wa-float-link" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+</div>
+
+<script>
+/* ═══════ TRANSLATIONS ═══════ */
+const i18n = {
+    en: {
+        header_cta:"Get a Quote", hero_label:"Porto & Greater Porto · Premium Service",
+        hero_title:"Electrical &amp;<br><em>Automation</em><br>for Fine Homes",
+        hero_desc:"Certified electrical installations and high-performance smart home systems for premium residences. From design to handover — with precision and elegance.",
+        wa_cta:"WhatsApp Us", see_services:"View Services",
+        services_label:"What we do", services_title:"Solutions built<br>for your<br>residence",
+        services_sub:"Every project is unique. We work closely with architects, interior designers and homeowners to deliver the perfect result.",
+        s1_title:"Electrical Installations", s1_desc:"Full electrical design and installation using premium materials, certified to DGEG standards.",
+        s2_title:"Smart Home & Automation", s2_desc:"Control lighting, climate, blinds and security from your phone. KNX, Loxone and Legrand integration.",
+        s3_title:"Designer Lighting", s3_desc:"Custom lighting design: scenes, warm/cool tuning, premium LED and integration with automation systems.",
+        s4_title:"Security & CCTV", s4_desc:"Video surveillance, alarms and access control — all integrated into your smart home network.",
+        s5_title:"Network & Infrastructure", s5_desc:"High-speed structured cabling, full Wi-Fi coverage, internal fibre and AV distribution.",
+        s6_title:"Maintenance & Support", s6_desc:"Preventive maintenance contracts, priority call-out and software updates for existing systems.",
+        why_label:"Why choose us", why_title:"Precision and<br>elegance in<br>every project",
+        why_sub:"Specialists in high-end residences across the Porto region. We use the best materials and technologies, with an obsessive focus on detail and client experience.",
+        stat1:"Years experience", stat2:"Projects completed", stat3:"DGEG certified", stat4:"Response guaranteed",
+        process_label:"How we work", process_title:"From first contact<br>to handover",
+        process_sub:"A simple, transparent process — no surprises.",
+        p1_title:"First Contact", p1_desc:"Call or WhatsApp to understand your project and vision.",
+        p2_title:"Site Visit & Quote", p2_desc:"Free technical visit and detailed proposal with no commitment.",
+        p3_title:"Installation", p3_desc:"Precise execution with care and respect for your space.",
+        p4_title:"Handover & Support", p4_desc:"Training, documentation and ongoing post-installation support.",
+        strip_quote:'"Your home deserves more than the minimum."',
+        schedule_visit:"Schedule Free Visit", contact_label:"Contact", contact_title:"Ready to start?",
+        contact_sub:"Talk to us today. No-obligation quote and free technical visit across the entire Porto region.",
+        wa_now:"WhatsApp Now", wa_tooltip:"Talk to us now", footer_name:"Electrical & Automation"
+    },
+    pt: {
+        header_cta:"Pedir Orçamento", hero_label:"Porto & Grande Porto · Serviço Premium",
+        hero_title:"Eletricidade &amp;<br><em>Automação</em><br>Residencial",
+        hero_desc:"Instalações elétricas certificadas e sistemas de domótica de alta performance para residências premium. Do projecto à entrega — com rigor e elegância.",
+        wa_cta:"Falar no WhatsApp", see_services:"Ver Serviços",
+        services_label:"O que fazemos", services_title:"Soluções à<br>medida da sua<br>residência",
+        services_sub:"Cada projecto é único. Trabalhamos em estreita colaboração com arquitectos, designers de interiores e proprietários para garantir o resultado perfeito.",
+        s1_title:"Instalações Elétricas", s1_desc:"Projecto e execução de instalações elétricas completas, com materiais de primeira linha e certificação DGEG.",
+        s2_title:"Domótica & Smart Home", s2_desc:"Controle iluminação, clima, persianas e segurança a partir do seu smartphone. Integração KNX, Loxone e Legrand.",
+        s3_title:"Iluminação de Design", s3_desc:"Projecto de iluminação personalizado: cenários, luz quente/fria, LED premium e integração com automação.",
+        s4_title:"Segurança & CCTV", s4_desc:"Sistemas de videovigilância, alarmes e controlo de acessos integrados na sua rede domótica.",
+        s5_title:"Rede & Infraestrutura", s5_desc:"Redes estruturadas de alta velocidade, Wi-Fi de cobertura total, cabo de fibra interna e distribuição AV.",
+        s6_title:"Manutenção & Suporte", s6_desc:"Contrato de manutenção preventiva, assistência prioritária e actualizações de software.",
+        why_label:"Porquê escolher-nos", why_title:"Precisão e<br>elegância em<br>cada projecto",
+        why_sub:"Especializados em residências de alto padrão na região do Porto. Trabalhamos com os melhores materiais e tecnologias, com foco no detalhe e no cliente.",
+        stat1:"Anos de experiência", stat2:"Projectos concluídos", stat3:"Certificados DGEG", stat4:"Resposta garantida",
+        process_label:"Como trabalhamos", process_title:"Do primeiro contacto<br>à chave na mão",
+        process_sub:"Um processo simples, transparente e sem surpresas.",
+        p1_title:"Primeiro Contacto", p1_desc:"Chamada ou WhatsApp para perceber o projecto e a sua visão.",
+        p2_title:"Visita & Orçamento", p2_desc:"Visita técnica gratuita e proposta detalhada sem compromisso.",
+        p3_title:"Execução", p3_desc:"Instalação com rigor, organização e respeito pelo seu espaço.",
+        p4_title:"Entrega & Suporte", p4_desc:"Formação, documentação e suporte contínuo pós-instalação.",
+        strip_quote:'"A sua casa merece mais do que o mínimo."',
+        schedule_visit:"Agendar Visita Gratuita", contact_label:"Contacto", contact_title:"Pronto para começar?",
+        contact_sub:"Fale connosco hoje. Orçamento sem compromisso e visita técnica gratuita em toda a região do Porto.",
+        wa_now:"WhatsApp Agora", wa_tooltip:"Fale connosco agora", footer_name:"Eletricidade & Automação"
+    }
+};
+
+const waMsgs = {
+    en:{ header:"Hello, I would like a quote for electrical installation or home automation.", hero:"Hello, I would like a quote.", strip:"Hello, I would like to schedule a free visit.", contact:"Hello, I would like a quote.", float:"Hello, I would like a quote for electrical installation or home automation." },
+    pt:{ header:"Olá, gostaria de um orçamento para instalação elétrica ou automação.", hero:"Olá, gostaria de um orçamento.", strip:"Olá, gostaria de agendar uma visita gratuita.", contact:"Olá, gostaria de um orçamento.", float:"Olá, gostaria de um orçamento para instalação elétrica ou automação residencial." }
+};
+
+const WA_NUM = "351910000000"; // ← Replace with real number
+
+function waLink(msg){ return `https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`; }
+
+function applyLang(lang) {
+    const t = i18n[lang], m = waMsgs[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (t[k] !== undefined) el.innerHTML = t[k];
+    });
+    document.getElementById('header-cta-link').href = waLink(m.header);
+    document.getElementById('wa-hero').href = waLink(m.hero);
+    document.getElementById('strip-cta').href = waLink(m.strip);
+    document.getElementById('contact-wa').href = waLink(m.contact);
+    document.getElementById('wa-float-link').href = waLink(m.float);
+    document.getElementById('footer-wa').href = waLink(m.float);
+    document.documentElement.lang = lang;
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyLang(btn.dataset.lang);
+    });
+});
+
+/* ═══════ ENERGY CANVAS ═══════ */
+(function(){
+    const canvas = document.getElementById('energyCanvas');
+    const ctx = canvas.getContext('2d');
+    function resize(){ canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Particles
+    class Particle {
+        constructor(){ this.reset(); }
+        reset(){
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random()-.5)*.4;
+            this.vy = (Math.random()-.5)*.4;
+            this.r = Math.random()*1.4+.3;
+            this.alpha = Math.random()*.45+.1;
+            this.life = Math.random()*220+80;
+            this.age = 0;
+            this.col = Math.random()>.5 ? '0,212,255' : '201,168,76';
+        }
+        tick(){
+            this.x+=this.vx; this.y+=this.vy; this.age++;
+            if(this.age>this.life) this.reset();
+        }
+        draw(){
+            const f = Math.sin((this.age/this.life)*Math.PI);
+            ctx.beginPath();
+            ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+            ctx.fillStyle=`rgba(${this.col},${this.alpha*f})`;
+            ctx.fill();
+        }
+    }
+    const particles = Array.from({length:80},()=>new Particle());
+
+    // Lightning bolt recursion
+    function bolt(x1,y1,x2,y2,rough,depth){
+        if(depth===0){ ctx.lineTo(x2,y2); return; }
+        const mx=(x1+x2)/2+(Math.random()-.5)*rough;
+        const my=(y1+y2)/2+(Math.random()-.5)*rough;
+        bolt(x1,y1,mx,my,rough/2,depth-1);
+        bolt(mx,my,x2,y2,rough/2,depth-1);
+    }
+
+    class Arc {
+        constructor(){ this.reset(); }
+        reset(){
+            const w=canvas.width, h=canvas.height;
+            const side=Math.floor(Math.random()*4);
+            if(side===0){this.x1=Math.random()*w;this.y1=0;}
+            else if(side===1){this.x1=w;this.y1=Math.random()*h;}
+            else if(side===2){this.x1=Math.random()*w;this.y1=h;}
+            else{this.x1=0;this.y1=Math.random()*h;}
+            const ang=Math.random()*Math.PI*2;
+            const len=Math.random()*Math.min(w,h)*.45+Math.min(w,h)*.08;
+            this.x2=this.x1+Math.cos(ang)*len;
+            this.y2=this.y1+Math.sin(ang)*len;
+            this.rough=Math.random()*110+35;
+            this.alpha=Math.random()*.45+.1;
+            this.lw=Math.random()*1.1+.2;
+            this.flicker=0;
+            this.maxFlicker=Math.floor(Math.random()*5)+2;
+            this.col=Math.random()>.3?'0,212,255':'125,249,255';
+            this.glow=Math.random()>.45;
+        }
+        draw(){
+            this.flicker++;
+            if(this.flicker>=this.maxFlicker){ this.reset(); return; }
+            const a=this.alpha*(1-this.flicker/this.maxFlicker);
+            // Outer glow pass
+            ctx.beginPath(); ctx.moveTo(this.x1,this.y1);
+            bolt(this.x1,this.y1,this.x2,this.y2,this.rough,5);
+            ctx.strokeStyle=`rgba(${this.col},${a*.18})`;
+            ctx.lineWidth=this.lw*5;
+            ctx.shadowBlur=0; ctx.stroke();
+            // Core
+            ctx.beginPath(); ctx.moveTo(this.x1,this.y1);
+            bolt(this.x1,this.y1,this.x2,this.y2,this.rough,5);
+            ctx.strokeStyle=`rgba(${this.col},${a})`;
+            ctx.lineWidth=this.lw;
+            if(this.glow){ ctx.shadowColor=`rgba(0,212,255,${a*.9})`; ctx.shadowBlur=20; }
+            ctx.stroke();
+            ctx.shadowBlur=0;
+        }
+    }
+    const arcs = Array.from({length:9},()=>new Arc());
+    arcs.forEach((a,i)=>{ for(let j=0;j<i*4;j++) a.flicker++; });
+
+    // Energy grid
+    function drawGrid(){
+        const s=68, t=Date.now()*.00025;
+        ctx.lineWidth=.35;
+        for(let x=0;x<canvas.width;x+=s){
+            for(let y=0;y<canvas.height;y+=s){
+                const pulse=Math.sin(x*.018+t)*Math.cos(y*.018+t);
+                ctx.strokeStyle=`rgba(0,212,255,${(pulse+1)/2*.055})`;
+                ctx.beginPath(); ctx.rect(x,y,s,s); ctx.stroke();
             }
         }
+    }
 
-        // Enhanced smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+    // Glow nodes
+    const nodes = Array.from({length:10},()=>({
+        x:Math.random(),y:Math.random(),
+        r:Math.random()*65+18,
+        ph:Math.random()*Math.PI*2,
+        sp:Math.random()*.012+.003,
+        col:Math.random()>.5?'0,212,255':'201,168,76'
+    }));
+
+    function drawNodes(){
+        const t=Date.now()*.001;
+        nodes.forEach(n=>{
+            const a=(Math.sin(t*n.sp*60+n.ph)+1)/2*.11;
+            const grd=ctx.createRadialGradient(n.x*canvas.width,n.y*canvas.height,0,n.x*canvas.width,n.y*canvas.height,n.r);
+            grd.addColorStop(0,`rgba(${n.col},${a})`);
+            grd.addColorStop(1,`rgba(${n.col},0)`);
+            ctx.fillStyle=grd;
+            ctx.beginPath(); ctx.arc(n.x*canvas.width,n.y*canvas.height,n.r,0,Math.PI*2); ctx.fill();
         });
+    }
 
-        // Enhanced header background and effects on scroll
-        let lastScrollY = window.scrollY;
-        
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            const currentScrollY = window.scrollY;
-            
-            if (currentScrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
-                header.style.backdropFilter = 'blur(25px)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-                header.style.backdropFilter = 'blur(20px)';
-            }
+    let arcTimer=0;
+    function loop(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        drawGrid(); drawNodes();
+        particles.forEach(p=>{ p.tick(); p.draw(); });
+        arcs.forEach(a=>a.draw());
+        arcTimer++;
+        if(arcTimer%20===0){ const d=arcs.find(a=>a.flicker>=a.maxFlicker); if(d) d.reset(); }
+        if(arcTimer%7===0 && Math.random()>.65){ const d=arcs.find(a=>a.flicker>=a.maxFlicker); if(d) d.reset(); }
+        requestAnimationFrame(loop);
+    }
+    loop();
+})();
 
-            // Hide/show header on scroll direction
-            if (currentScrollY > lastScrollY && currentScrollY > 200) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScrollY = currentScrollY;
-        });
+/* ═══════ SCROLL / REVEAL ═══════ */
+window.addEventListener('scroll',()=>{
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY>60);
+});
 
-        // Enhanced Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -80px 0px'
-        };
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); observer.unobserve(e.target); }});
+},{ threshold:.08, rootMargin:'0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    entry.target.classList.add('animate-in');
-                }
-            });
-        }, observerOptions);
-
-        // Enhanced animation setup
-        document.querySelectorAll('.fade-in-up, .cv-item, .process-step, .use-case').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(40px)';
-            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            observer.observe(el);
-        });
-
-        // Parallax effect for hero background
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const heroBackground = document.querySelector('.hero-bg');
-            if (heroBackground) {
-                heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Add mousemove effect to hero section
-        document.querySelector('.hero').addEventListener('mousemove', function(e) {
-            const points = document.querySelectorAll('.data-point');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            
-            points.forEach((point, index) => {
-                const speed = (index % 3 + 1) * 0.5;
-                const x = (mouseX - 0.5) * speed;
-                const y = (mouseY - 0.5) * speed;
-                point.style.transform = `translate(${x}px, ${y}px) scale(${1 + Math.abs(x + y) * 0.1})`;
-            });
-        });
-
-        // Initialize data visualization on load
-        document.addEventListener('DOMContentLoaded', function() {
-            createDataVisualization();
-            
-            // Add subtle animation to skill tags
-            const skillTags = document.querySelectorAll('.skill-tag');
-            skillTags.forEach((tag, index) => {
-                tag.style.animationDelay = (index * 0.1) + 's';
-                tag.style.animation = 'fadeInUp 0.6s ease-out forwards';
-            });
-        });
-
-        // Add dynamic typing effect to hero title
-        function typeWriter(element, text, speed = 50) {
-            let i = 0;
-            element.innerHTML = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            
-            setTimeout(type, 1000);
-        }
-
-        // Enhanced button hover effects
-        document.querySelectorAll('.cta-header, .hero-cta, .cta-button').forEach(button => {
-            button.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px) scale(1.02)';
-            });
-            
-            button.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-    </script>
+// Init
+applyLang('en');
+</script>
 </body>
 </html>
