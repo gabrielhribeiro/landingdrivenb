@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GH Electrical & Automation — Porto</title>
-    <meta name="description" content="Premium electrical installations, home automation, and free electrical calculators for the Porto region.">
+    <title>GH Electrical & Automation — Free Tools Dashboard (RTIEBT)</title>
+    <meta name="description" content="Free electrical calculators for the Porto region. Compliant with 2026 DGEG and ERSE regulations.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -18,13 +18,14 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
         body {
             font-family: 'Barlow', sans-serif;
             background: var(--stone-950);
             color: var(--stone-100);
             overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         body::before {
@@ -33,101 +34,32 @@
             pointer-events: none; z-index: 9998; opacity: 0.6;
         }
 
-        /* ── HEADER ── */
+        /* HEADER */
         header {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-            padding: 1.4rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
-            transition: background 0.5s, border-bottom 0.5s, padding 0.5s;
+            flex-shrink: 0; z-index: 100; background: rgba(12,11,9,.97); border-bottom: 1px solid rgba(201,168,76,.18);
+            padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
         }
-        header.scrolled {
-            background: rgba(12,11,9,0.96); border-bottom: 1px solid rgba(201,168,76,0.2);
-            backdrop-filter: blur(14px); padding: 1rem 2.5rem;
-        }
-        .header-left { display: flex; align-items: center; gap: 2rem; }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; letter-spacing: 0.05em; color: var(--white); text-decoration: none; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--white); text-decoration: none; }
         .logo span { color: var(--gold); }
-
-        .lang-switch { display: flex; align-items: stretch; border: 1px solid rgba(201,168,76,0.35); height: 32px; border-radius: 3px; }
-        .lang-btn { background: transparent; border: none; color: var(--stone-500); font-family: 'Barlow', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0 1rem; cursor: pointer; transition: all 0.25s; position: relative; }
-        .lang-btn.active { background: var(--gold); color: var(--stone-950); }
-        .lang-divider { width: 1px; background: rgba(201,168,76,0.35); flex-shrink: 0; }
-        .lang-btn[data-lang="en"] .en-badge { display: inline-flex; align-items: center; font-size: 0.5rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--electric); background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.35); padding: 0.12rem 0.4rem; border-radius: 2px; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none; }
-        .lang-btn[data-lang="en"].active .en-badge { color: var(--stone-950); background: rgba(0,0,0,0.15); border-color: rgba(0,0,0,0.2); }
-
         .header-right { display: flex; align-items: center; gap: 1.5rem; }
-        .nav-link { color: var(--stone-300); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.3s; }
-        .nav-link:hover { color: var(--gold); }
-        .header-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: var(--stone-950); text-decoration: none; padding: 0.6rem 1.4rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.3s, transform 0.3s; white-space: nowrap; border-radius: 3px; }
-        .header-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
-        .header-cta svg { width: 15px; height: 15px; flex-shrink: 0; }
-
-        /* ── HERO ── */
-        .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 2.5rem 7rem; overflow: hidden; }
-        .hero-photo { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1800&q=80') center/cover no-repeat; filter: brightness(0.25) saturate(0.5); }
-        .hero-grad { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(12,11,9,0.05) 0%, rgba(12,11,9,0.5) 50%, var(--stone-950) 100%); }
-        #energyCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-        .hero-veins { position: absolute; inset: 0; background: repeating-linear-gradient(-23deg, transparent, transparent 120px, rgba(201,168,76,0.025) 121px, rgba(201,168,76,0.025) 122px); }
-        .hero-content { position: relative; z-index: 10; max-width: 820px; }
-        .hero-label { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--electric); border: 1px solid rgba(0,212,255,0.35); padding: 0.4rem 1rem; margin-bottom: 2rem; animation: fadeUp 1s ease both; text-shadow: 0 0 12px rgba(0,212,255,0.5); }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 7vw, 6.5rem); font-weight: 300; line-height: 1.05; color: var(--white); margin-bottom: 2rem; animation: fadeUp 1s ease 0.15s both; }
-        .hero h1 em { font-style: italic; color: var(--gold); }
-        .hero-desc { font-size: 1.05rem; font-weight: 300; color: var(--stone-300); line-height: 1.7; max-width: 520px; margin-bottom: 3rem; animation: fadeUp 1s ease 0.3s both; }
-        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 1s ease 0.45s both; }
-        .btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gold); color: var(--stone-950); text-decoration: none; padding: 1rem 2.2rem; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.3s; border-radius: 3px; border: none; cursor: pointer; }
-        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.25); }
-        .btn-secondary { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--stone-300); text-decoration: none; padding: 1rem 2.2rem; font-size: 0.88rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid rgba(196,191,181,0.3); transition: all 0.3s; border-radius: 3px; }
-        .btn-secondary:hover { color: var(--white); border-color: rgba(201,168,76,0.5); }
-        .scroll-hint { position: absolute; bottom: 2.5rem; right: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone-500); animation: fadeUp 1s ease 1s both; }
-        .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-        @keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
-
-        /* ── SECTIONS ── */
-        .gold-divider { height: 1px; background: linear-gradient(90deg,transparent,var(--gold),transparent); opacity:.35; }
-        section { padding: 7rem 2.5rem; }
-        .section-label { font-size:.7rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
-        .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4vw,3.8rem); font-weight:300; line-height:1.15; color:var(--white); margin-bottom:1.5rem; }
-        .section-sub { font-size:1rem; font-weight:300; color:var(--stone-300); line-height:1.7; max-width:540px; }
-
-        /* Services */
-        .services { background: var(--stone-900); }
-        .services-header { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:end; margin-bottom:5rem; }
-        .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(201,168,76,0.12); }
-        .service-card { background: var(--stone-900); padding: 3rem 2.5rem; position: relative; overflow: hidden; transition: background 0.4s; }
-        .service-card::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); }
-        .service-card:hover::before { transform:scaleX(1); }
-        .service-card:hover { background: var(--stone-800); }
-        .service-icon { width:48px; height:48px; margin-bottom:1.8rem; color:var(--gold); }
-        .service-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.45rem; font-weight:600; color:var(--white); margin-bottom:.9rem; line-height:1.2; }
-        .service-card p { font-size:.88rem; font-weight:300; color:var(--stone-300); line-height:1.7; }
-        .service-num { position:absolute; bottom:1.5rem; right:2rem; font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; color:rgba(201,168,76,0.07); line-height:1; transition:color 0.4s; }
-        .service-card:hover .service-num { color:rgba(201,168,76,0.14); }
-
-        /* Why */
-        .why { background:var(--stone-950); display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; padding:8rem 2.5rem; }
-        .why-image { position:relative; }
-        .why-image img { width:100%; height:560px; object-fit:cover; display:block; filter:brightness(0.82) contrast(1.1); }
-        .why-image::after { content:''; position:absolute; inset:20px -20px -20px 20px; border:1px solid rgba(201,168,76,0.28); z-index:-1; }
-        .why-stats { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; margin-top:3.5rem; }
-        .stat { border-left:2px solid var(--gold); padding-left:1.5rem; }
-        .stat-num { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--gold); line-height:1; margin-bottom:.4rem; }
-        .stat-label { font-size:.78rem; font-weight:400; letter-spacing:.08em; text-transform:uppercase; color:var(--stone-300); }
-
-        /* Process */
-        .process { background:var(--stone-900); }
-        .process-header { text-align:center; margin-bottom:5rem; }
-        .process-header .section-sub { margin:0 auto; }
-        .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
-        .process-steps::before { content:''; position:absolute; top:2.5rem; left:12%; right:12%; height:1px; background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.2),var(--gold)); }
-        .process-step { text-align:center; padding:0 2rem; position:relative; z-index:1; }
-        .step-circle { width:52px;height:52px; border:1px solid var(--gold); background:var(--stone-900); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 2rem; font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--gold); }
-        .process-step h4 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:var(--white); margin-bottom:.75rem; }
-        .process-step p { font-size:.85rem; font-weight:300; color:var(--stone-500); line-height:1.6; }
-
-        /* ── EMBEDDED TOOLS SECTION ── */
-        .tools-section { padding: 0; background: var(--stone-950); border-top: 1px solid rgba(201,168,76,.15); border-bottom: 1px solid rgba(201,168,76,.15); }
-        .app-container { display: flex; width: 100%; max-width: 1600px; margin: 0 auto; height: 80vh; min-height: 700px; max-height: 900px; }
         
-        /* Sidebar */
+        .lang-switch { display: flex; align-items: stretch; border: 1px solid rgba(201,168,76,0.35); height: 32px; border-radius: 3px; overflow: hidden;}
+        .lang-btn { background: transparent; border: none; color: var(--stone-500); font-family: 'Barlow', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0 1rem; cursor: pointer; transition: all 0.25s; }
+        .lang-btn.active { background: var(--gold); color: var(--stone-950); }
+        .lang-divider { width: 1px; background: rgba(201,168,76,0.35); }
+
+        /* BADGE 2026 */
+        .badge-2026 {
+            background: rgba(0,212,255,.1); border: 1px solid rgba(0,212,255,.3);
+            color: var(--electric); font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+            padding: .3rem .6rem; border-radius: 4px; text-transform: uppercase;
+            display: inline-flex; align-items: center; gap: .4rem; margin-bottom: 1rem;
+        }
+
+        /* DASHBOARD LAYOUT */
+        .app-container { flex: 1; display: flex; overflow: hidden; max-width: 1600px; width: 100%; margin: 0 auto; }
+        
+        /* SIDEBAR */
         .sidebar { width: 280px; background: var(--stone-900); border-right: 1px solid rgba(201,168,76,.15); display: flex; flex-direction: column; overflow-y: auto; padding: 2rem 1.5rem; flex-shrink: 0; }
         .sidebar-cat { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--stone-500); margin: 1.5rem 0 .8rem; }
         .sidebar-cat:first-child { margin-top: 0; }
@@ -137,30 +69,30 @@
         .nav-btn.active { background: rgba(201,168,76,.1); color: var(--gold); font-weight: 600; }
         .nav-btn.active svg { opacity: 1; stroke: var(--gold); }
 
-        /* Tool Main Area */
+        /* MAIN CONTENT */
         .main-content { flex: 1; background: var(--stone-950); position: relative; overflow-y: auto; }
         .tool-pane { display: none; height: 100%; animation: fadeIn 0.3s ease; }
         .tool-pane.active { display: flex; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Split Layout */
+        /* SPLIT LAYOUT */
         .split-layout { display: flex; width: 100%; height: 100%; }
         .form-col { flex: 1; padding: 3rem; overflow-y: auto; max-width: 700px; }
         .result-col { flex: 0 0 420px; background: var(--stone-900); border-left: 1px solid rgba(201,168,76,.15); padding: 3rem 2.5rem; display: flex; flex-direction: column; overflow-y: auto; }
 
-        .tool-header { margin-bottom: 2.5rem; }
         .tool-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; color: var(--white); line-height: 1.1; margin-bottom: .5rem; }
-        .tool-header p { font-size: .95rem; font-weight: 300; color: var(--stone-400); line-height: 1.5; }
+        .tool-header p { font-size: .95rem; font-weight: 300; color: var(--stone-400); line-height: 1.5; margin-bottom: 2.5rem; }
 
-        /* Forms */
+        /* FORMS */
         .field { margin-bottom: 1.4rem; }
         .field label { display: block; font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--stone-400); margin-bottom: .6rem; }
         .input-group { position: relative; }
-        .field input, .field select { width: 100%; background: var(--stone-800); border: 1px solid rgba(201,168,76,.18); color: var(--white); font-family: 'Barlow', sans-serif; font-size: .95rem; padding: .85rem 1rem; outline: none; transition: border-color .3s; border-radius: var(--radius); appearance: none; }
-        .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7468' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
-        .field input:focus, .field select:focus { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(201,168,76,.2); }
+        .field input, .field select { width: 100%; background: var(--stone-800); border: 1px solid rgba(201,168,76,.18); color: var(--white); font-family: 'Barlow', sans-serif; font-size: .95rem; padding: .85rem 1rem; outline: none; border-radius: var(--radius); appearance: none; transition: border-color .3s; }
+        .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7468' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; cursor: pointer; }
+        .field input:focus, .field select:focus { border-color: var(--gold); }
         .unit-suffix { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--stone-500); font-size: .85rem; font-weight: 500; pointer-events: none; }
         .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        
         .field input[type=range] { padding: 0; height: 4px; background: var(--stone-700); border: none; cursor: pointer; accent-color: var(--gold); }
 
         .appliance-list { display: flex; flex-direction: column; gap: .5rem; }
@@ -168,22 +100,15 @@
         .appliance-name { font-size: .9rem; font-weight: 500; color: var(--stone-300); }
         .appliance-watts { font-size: .8rem; color: var(--stone-500); }
         .qty-ctrl { display: flex; align-items: center; gap: .5rem; }
-        .qty-btn { width: 28px; height: 28px; background: rgba(201,168,76,.05); border: 1px solid rgba(201,168,76,.25); color: var(--gold); font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 4px; transition: background .2s; }
-        .qty-btn:hover { background: rgba(201,168,76,.15); }
+        .qty-btn { width: 28px; height: 28px; background: rgba(201,168,76,.05); border: 1px solid rgba(201,168,76,.25); color: var(--gold); font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
         .qty-val { width: 24px; text-align: center; font-size: .95rem; font-weight: 600; color: var(--white); }
 
-        /* Results */
+        /* RESULTS */
         .result-box { background: rgba(201,168,76,.03); border: 1px solid rgba(201,168,76,.2); padding: 2rem; border-radius: var(--radius); text-align: center; margin-bottom: 2rem; }
         .result-title { font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
         .result-main { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: .8rem; }
         .result-main span { color: var(--gold); font-size: 1.5rem; vertical-align: middle; }
         .result-sub { font-size: .9rem; font-weight: 300; color: var(--stone-400); line-height: 1.5; }
-
-        .bar-row { display: flex; align-items: center; gap: .8rem; margin-bottom: .8rem; }
-        .bar-label { font-size: .8rem; color: var(--stone-400); width: 120px; text-align: left; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
-        .bar-track { flex: 1; height: 6px; background: var(--stone-800); border-radius: 3px; overflow: hidden; }
-        .bar-fill { height: 100%; border-radius: 3px; transition: width .4s ease; }
-        .bar-val { font-size: .8rem; font-weight: 600; color: var(--white); width: 60px; text-align: right; flex-shrink: 0; }
 
         .result-tags { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem; }
         .rtag { font-size: .7rem; font-weight: 600; letter-spacing: .06em; padding: .35rem .75rem; border-radius: 20px; }
@@ -192,79 +117,34 @@
         .rtag-red { background: rgba(239,68,68,.12); color: #fca5a5; border: 1px solid rgba(239,68,68,.25); }
         .rtag-blue { background: rgba(0,212,255,.1); color: #7dd3fc; border: 1px solid rgba(0,212,255,.22); }
 
-        .btn-tool-primary { width: 100%; display: flex; align-items: center; justify-content: center; gap: .6rem; background: var(--gold); color: var(--stone-950); border: none; font-family: 'Barlow', sans-serif; font-size: .9rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 1.2rem; cursor: pointer; border-radius: var(--radius); transition: all .2s; text-decoration: none; margin-top: auto; }
-        .btn-tool-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-        .btn-tool-outline { width: 100%; display: flex; align-items: center; justify-content: center; gap: .6rem; background: transparent; color: var(--white); border: 1px solid rgba(201,168,76,.3); font-family: 'Barlow', sans-serif; font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 1rem; cursor: pointer; border-radius: var(--radius); transition: all .2s; margin-top: 1rem; }
-        .btn-tool-outline:hover { background: rgba(201,168,76,.05); border-color: var(--gold); }
+        .bar-row { display: flex; align-items: center; gap: .8rem; margin-bottom: .8rem; }
+        .bar-label { font-size: .8rem; color: var(--stone-400); width: 120px; text-align: left; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+        .bar-track { flex: 1; height: 6px; background: var(--stone-800); border-radius: 3px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 3px; transition: width .4s ease; }
+        .bar-val { font-size: .8rem; font-weight: 600; color: var(--white); width: 60px; text-align: right; flex-shrink: 0; }
 
+        .btn-primary { width: 100%; display: flex; align-items: center; justify-content: center; gap: .6rem; background: var(--gold); color: var(--stone-950); border: none; font-family: 'Barlow', sans-serif; font-size: .9rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 1.2rem; cursor: pointer; border-radius: var(--radius); text-decoration: none; margin-top: auto; transition: transform .2s;}
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-outline { width: 100%; display: flex; align-items: center; justify-content: center; gap: .6rem; background: transparent; color: var(--white); border: 1px solid rgba(201,168,76,.3); font-family: 'Barlow', sans-serif; font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 1rem; cursor: pointer; border-radius: var(--radius); margin-top: 1rem; transition: background .2s;}
+        .btn-outline:hover { background: rgba(201,168,76,.05); border-color: var(--gold); }
+
+        /* Ohm Grid */
         .ohm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
         .ohm-card { background: var(--stone-800); border: 1px solid rgba(201,168,76,.15); padding: 1.5rem; border-radius: var(--radius); text-align: center; }
-        .ohm-icon { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold); margin-bottom: .5rem; }
         .ohm-card input { text-align: center; font-size: 1.2rem; font-weight: 600; background: transparent; border: none; border-bottom: 2px solid var(--stone-600); border-radius: 0; padding: .5rem 0; color: var(--white); width: 80%; }
         .ohm-card input:focus { border-bottom-color: var(--gold); outline: none; }
         .ohm-card input:not(:placeholder-shown) { border-bottom-color: var(--electric); }
 
-        /* ── STRIP & FOOTER ── */
-        .strip { background:var(--gold); padding:3rem 2.5rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
-        .strip-text { font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,3vw,2.2rem); font-weight:400; color:var(--stone-950); font-style:italic; flex:1; min-width:260px; }
-        .btn-dark { display:inline-flex; align-items:center; gap:.6rem; background:var(--stone-950); color:var(--gold); text-decoration:none; padding:1rem 2.2rem; font-size:.85rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; transition:background 0.3s; border-radius: 3px; }
-        .btn-dark:hover { background:var(--stone-800); }
-
-        .contact { background:var(--stone-950); text-align:center; }
-        .contact .section-sub { margin:0 auto 3rem; text-align:center; }
-        .contact-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-
-        footer { background:var(--stone-900); border-top:1px solid rgba(201,168,76,.15); padding:2.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-        .footer-logo { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--white); }
-        .footer-logo span { color:var(--gold); }
-        footer p { font-size:.78rem; color:var(--stone-500); }
-        footer a { color:var(--stone-500); text-decoration:none; font-size:.78rem; transition:color 0.3s; }
-        footer a:hover { color:var(--gold); }
-
-        .wa-float { position:fixed; bottom:2rem; right:2rem; z-index:300; display:flex; flex-direction:column; align-items:flex-end; gap:.75rem; }
-        .wa-tooltip { background:var(--stone-800); color:var(--white); font-size:.78rem; padding:.5rem 1rem; border:1px solid rgba(201,168,76,.3); opacity:0; transform:translateX(10px); transition:all 0.3s; pointer-events:none; white-space:nowrap; }
-        .wa-float:hover .wa-tooltip { opacity:1; transform:translateX(0); }
-        .wa-btn { width:60px;height:60px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 32px rgba(37,211,102,.35); transition:transform 0.3s,box-shadow 0.3s; text-decoration:none; }
-        .wa-btn:hover { transform:scale(1.1); box-shadow:0 12px 40px rgba(37,211,102,.45); }
-        .wa-btn svg { width:30px;height:30px;fill:white; }
-
-        /* ANIMATIONS */
-        @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-        .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s ease,transform 0.8s ease; }
-        .reveal.visible { opacity:1; transform:translateY(0); }
-
         /* RESPONSIVE */
-        @media(max-width:1024px){
-            .services-grid{grid-template-columns:repeat(2,1fr)}
-            .why{grid-template-columns:1fr;gap:4rem}
-            .process-steps{grid-template-columns:repeat(2,1fr);gap:3rem}
-            .process-steps::before{display:none}
-            .app-container { height: auto; flex-direction: column; }
+        @media(max-width: 992px) {
+            body { height: auto; overflow-y: auto; display: block; }
+            .app-container { flex-direction: column; }
             .sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(201,168,76,.15); padding: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
             .split-layout { flex-direction: column; }
             .form-col, .result-col { max-width: 100%; padding: 2rem 1.5rem; }
             .result-col { border-left: none; border-top: 1px solid rgba(201,168,76,.15); }
         }
-        @media(max-width:768px){
-            header{padding:1.1rem 1.2rem}
-            header.scrolled { padding: 1rem 1.2rem; }
-            .logo{font-size:1.2rem}
-            .header-cta span{display:none}
-            .nav-link { display: none; } /* Hide tools text link on small mobile */
-            section{padding:5rem 1.5rem}
-            .hero{padding:0 1.5rem 5rem}
-            .services-header{grid-template-columns:1fr;gap:2rem}
-            .services-grid{grid-template-columns:1fr}
-            .why{padding:5rem 1.5rem}
-            .why-image img{height:320px}
-            .why-stats{grid-template-columns:1fr 1fr}
-            .process-steps{grid-template-columns:1fr;gap:2.5rem}
-            footer{flex-direction:column;text-align:center}
-        }
-        @media(max-width:600px){
-            .hero h1{font-size:2.5rem}
-            .hero-actions{flex-direction:column}
-            .btn-primary,.btn-secondary{justify-content:center}
+        @media(max-width: 600px) {
             .sidebar { grid-template-columns: 1fr; }
             .ohm-grid { grid-template-columns: 1fr; }
         }
@@ -272,579 +152,391 @@
 </head>
 <body>
 
-<header id="header">
-    <div class="header-left">
-        <a href="#" class="logo">GH<span>.</span></a>
+<header>
+    <a href="#" class="logo">GH<span>.</span></a>
+    <div class="header-right">
         <div class="lang-switch">
-            <button class="lang-btn active" data-lang="en">
-                EN
-                <span class="en-badge">★ Native</span>
-            </button>
+            <button class="lang-btn active" data-lang="en">EN</button>
             <div class="lang-divider"></div>
             <button class="lang-btn" data-lang="pt">PT</button>
         </div>
     </div>
-    <div class="header-right">
-        <a href="#tools" class="nav-link" data-i18n="nav_tools_link">Free Tools</a>
-        <a href="#" class="header-cta" id="header-cta-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.82 10a19.79 19.79 0 01-3.07-8.67A2 2 0 012.73 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91A16 16 0 0013 14l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            <span data-i18n="header_cta">Get a Quote</span>
-        </a>
-    </div>
 </header>
 
-<section class="hero">
-    <div class="hero-photo"></div>
-    <div class="hero-grad"></div>
-    <canvas id="energyCanvas"></canvas>
-    <div class="hero-veins"></div>
-    <div class="hero-content">
-        <div class="hero-label" data-i18n="hero_label">Porto &amp; Greater Porto · Premium Service</div>
-        <h1 data-i18n="hero_title">Electrical &amp;<br><em>Automation</em><br>for Fine Homes</h1>
-        <p class="hero-desc" data-i18n="hero_desc">Certified electrical installations and high-performance smart home systems for premium residences. From design to handover — with precision and elegance.</p>
-        <div class="hero-actions">
-            <a href="#" class="btn-primary" id="wa-hero">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-                <span data-i18n="wa_cta">WhatsApp Us</span>
-            </a>
-            <a href="#services" class="btn-secondary" data-i18n="see_services">View Services</a>
-        </div>
-    </div>
-    <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
-</section>
+<div class="app-container">
+    <aside class="sidebar">
+        <div class="sidebar-cat" data-i18n="cat_home">Homeowner Tools</div>
+        <button class="nav-btn active" data-target="load"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> <span data-i18n="nav_load">Load Calculator</span></button>
+        <button class="nav-btn" data-target="cost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> <span data-i18n="nav_cost">Cost Estimator</span></button>
+        
+        <div class="sidebar-cat" data-i18n="cat_pro" style="margin-top: 2rem;">Pro Electrician (DGEG/RTIEBT)</div>
+        <button class="nav-btn" data-target="cable"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg> <span data-i18n="nav_cable">Cable Sizing (Drop)</span></button>
+        <button class="nav-btn" data-target="earth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M8 22h8M6 18h12M10 14h4"/></svg> <span data-i18n="nav_earth">Earthing & RCD</span></button>
+        <button class="nav-btn" data-target="pf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> <span data-i18n="nav_pf">Power Factor</span></button>
+        <button class="nav-btn" data-target="conduit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg> <span data-i18n="nav_conduit">Conduit Sizing</span></button>
+        <button class="nav-btn" data-target="ipik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> <span data-i18n="nav_ipik">IP/IK Code Finder</span></button>
+        <button class="nav-btn" data-target="ohms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M12 4v8M8 8l4-4 4 4"/></svg> <span data-i18n="nav_ohms">Ohm's Law</span></button>
+    </aside>
 
-<div class="gold-divider"></div>
+    <main class="main-content">
 
-<section class="services" id="services">
-    <div class="services-header reveal">
-        <div>
-            <div class="section-label" data-i18n="services_label">What we do</div>
-            <h2 class="section-title" data-i18n="services_title">Solutions built<br>for your<br>residence</h2>
-        </div>
-        <p class="section-sub" data-i18n="services_sub">Every project is unique. We work closely with architects, interior designers and homeowners to deliver the perfect result.</p>
-    </div>
-    <div class="services-grid">
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            <h3 data-i18n="s1_title">Electrical Installations</h3>
-            <p data-i18n="s1_desc">Full electrical design and installation using premium materials, certified to DGEG standards.</p>
-            <div class="service-num">01</div>
-        </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
-            <h3 data-i18n="s2_title">Smart Home & Automation</h3>
-            <p data-i18n="s2_desc">Control lighting, climate, blinds and security from your phone. KNX, Loxone and Legrand integration.</p>
-            <div class="service-num">02</div>
-        </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9.663 17h4.673M12 3v1M6.343 6.343l-.707-.707M4 12H3M6.343 17.657l-.707.707M12 21v-1M17.657 17.657l.707.707M21 12h-1M17.657 6.343l.707-.707"/><circle cx="12" cy="12" r="4"/></svg>
-            <h3 data-i18n="s3_title">Designer Lighting</h3>
-            <p data-i18n="s3_desc">Custom lighting design: scenes, warm/cool tuning, premium LED and integration with automation systems.</p>
-            <div class="service-num">03</div>
-        </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <h3 data-i18n="s4_title">Security & CCTV</h3>
-            <p data-i18n="s4_desc">Video surveillance, alarms and access control — all integrated into your smart home network.</p>
-            <div class="service-num">04</div>
-        </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
-            <h3 data-i18n="s5_title">Network & Infrastructure</h3>
-            <p data-i18n="s5_desc">High-speed structured cabling, full Wi-Fi coverage, internal fibre and AV distribution.</p>
-            <div class="service-num">05</div>
-        </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-            <h3 data-i18n="s6_title">Maintenance & Support</h3>
-            <p data-i18n="s6_desc">Preventive maintenance contracts, priority call-out and software updates for existing systems.</p>
-            <div class="service-num">06</div>
-        </div>
-    </div>
-</section>
-
-<div class="gold-divider"></div>
-
-<section class="why">
-    <div class="why-image reveal">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Premium installation" loading="lazy">
-    </div>
-    <div class="why-content">
-        <div class="section-label reveal" data-i18n="why_label">Why choose us</div>
-        <h2 class="section-title reveal" data-i18n="why_title">Precision and<br>elegance in<br>every project</h2>
-        <p class="section-sub reveal" data-i18n="why_sub">Specialists in high-end residences across the Porto region. We use the best materials and technologies, with an obsessive focus on detail and client experience.</p>
-        <div class="why-stats">
-            <div class="stat reveal"><div class="stat-num">10+</div><div class="stat-label" data-i18n="stat1">Years experience</div></div>
-            <div class="stat reveal"><div class="stat-num">200+</div><div class="stat-label" data-i18n="stat2">Projects completed</div></div>
-            <div class="stat reveal"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat3">DGEG certified</div></div>
-            <div class="stat reveal"><div class="stat-num">48h</div><div class="stat-label" data-i18n="stat4">Response guaranteed</div></div>
-        </div>
-    </div>
-</section>
-
-<section class="process">
-    <div class="process-header">
-        <div class="section-label reveal" data-i18n="process_label">How we work</div>
-        <h2 class="section-title reveal" data-i18n="process_title">From first contact<br>to handover</h2>
-        <p class="section-sub reveal" data-i18n="process_sub">A simple, transparent process — no surprises.</p>
-    </div>
-    <div class="process-steps">
-        <div class="process-step reveal"><div class="step-circle">I</div><h4 data-i18n="p1_title">First Contact</h4><p data-i18n="p1_desc">Call or WhatsApp to understand your project and vision.</p></div>
-        <div class="process-step reveal"><div class="step-circle">II</div><h4 data-i18n="p2_title">Site Visit & Quote</h4><p data-i18n="p2_desc">Free technical visit and detailed proposal with no commitment.</p></div>
-        <div class="process-step reveal"><div class="step-circle">III</div><h4 data-i18n="p3_title">Installation</h4><p data-i18n="p3_desc">Precise execution with care and respect for your space.</p></div>
-        <div class="process-step reveal"><div class="step-circle">IV</div><h4 data-i18n="p4_title">Handover & Support</h4><p data-i18n="p4_desc">Training, documentation and ongoing post-installation support.</p></div>
-    </div>
-</section>
-
-<section id="tools" class="tools-section">
-    <div class="app-container reveal">
-        <aside class="sidebar">
-            <div class="sidebar-cat" data-i18n="cat_home">Homeowner Tools</div>
-            <button class="nav-btn active" data-target="load"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> <span data-i18n="nav_load">Load Calculator</span></button>
-            <button class="nav-btn" data-target="cost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> <span data-i18n="nav_cost">Cost Estimator</span></button>
-            <button class="nav-btn" data-target="led"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1M6.343 6.343l-.707-.707M4 12H3M6.343 17.657l-.707.707M12 21v-1M17.657 17.657l.707.707M21 12h-1M17.657 6.343l.707-.707"/><circle cx="12" cy="12" r="4"/></svg> <span data-i18n="nav_led">LED Savings</span></button>
-            
-            <div class="sidebar-cat" data-i18n="cat_pro" style="margin-top: 2rem;">Pro Electrician (PT)</div>
-            <button class="nav-btn" data-target="cable"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg> <span data-i18n="nav_cable">Cable / Voltage Drop</span></button>
-            <button class="nav-btn" data-target="ohms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> <span data-i18n="nav_ohms">Ohm's Law</span></button>
-        </aside>
-
-        <main class="main-content">
-            <div id="load" class="tool-pane active">
-                <div class="split-layout">
-                    <div class="form-col">
-                        <div class="tool-header">
-                            <h2 data-i18n="t1_title">Home Load Calculator</h2>
-                            <p data-i18n="t1_desc">Adjust your appliances to instantly see the recommended electrical panel size for your home.</p>
+        <div id="load" class="tool-pane active">
+            <div class="split-layout">
+                <div class="form-col">
+                    <div class="tool-header">
+                        <div class="badge-2026"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> 2026 Standards</div>
+                        <h2 data-i18n="t1_title">Home Load Calculator</h2>
+                        <p data-i18n="t1_desc">Adjust appliances to calculate required DGEG panel size.</p>
+                    </div>
+                    <div class="field">
+                        <label data-i18n="t1_area">House size</label>
+                        <div class="input-group">
+                            <input type="number" id="houseArea" value="150" min="30">
+                            <span class="unit-suffix">m²</span>
+                        </div>
+                    </div>
+                    <div class="field"><label data-i18n="t1_appliances">Appliances</label><div class="appliance-list" id="applianceList"></div></div>
+                    <div class="field-row">
+                        <div class="field">
+                            <label data-i18n="t1_ac">A/C Units</label>
+                            <select id="acUnits"><option value="0">0 Units</option><option value="1200">1 Unit (9k BTU)</option><option value="2400">2 Units</option><option value="3500">Multi-split</option></select>
                         </div>
                         <div class="field">
-                            <label data-i18n="t1_area">House size (m²)</label>
-                            <div class="input-group">
-                                <input type="number" id="houseArea" value="150" min="30" max="1000">
-                                <span class="unit-suffix">m²</span>
-                            </div>
+                            <label data-i18n="t1_ev">EV Charger (2026 Ready)</label>
+                            <select id="evCharger"><option value="0" data-i18n="t1_ev_no">None</option><option value="3700">3.7 kW (16A)</option><option value="7400">7.4 kW (32A)</option><option value="11000">11 kW (Three-phase)</option></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-col">
+                    <div class="result-box">
+                        <div class="result-title" data-i18n="result_panel">Recommended Panel</div>
+                        <div class="result-main" id="loadMain">-- <span>A</span></div>
+                        <div class="result-sub" id="loadSub">Adjust values to calculate.</div>
+                    </div>
+                    <div style="flex:1"><div style="font-size:.75rem;font-weight:600;letter-spacing:.1em;color:var(--stone-400);margin-bottom:1rem" data-i18n="load_usage">Load Breakdown</div><div id="loadBars"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cost" class="tool-pane">
+            <div class="split-layout">
+                <div class="form-col">
+                    <div class="tool-header">
+                        <div class="badge-2026"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> PT Market Rates</div>
+                        <h2 data-i18n="t2_title">Installation Cost</h2>
+                        <p data-i18n="t2_desc">Instant price estimation based on current Portuguese market rates.</p>
+                    </div>
+                    <div class="field"><label data-i18n="t2_area">Property size</label><input type="range" id="costArea" min="50" max="600" value="150"><div style="display:flex;justify-content:space-between;margin-top:.5rem"><span style="font-size:.8rem;color:var(--stone-500)">50m²</span><span style="font-size:1rem;font-weight:600;color:var(--gold)" id="costAreaVal">150m²</span><span style="font-size:.8rem;color:var(--stone-500)">600m²</span></div></div>
+                    <div class="field-row">
+                        <div class="field"><label data-i18n="t2_type">Work Type</label><select id="workType"><option value="new" data-i18n="t2_new">New build</option><option value="reno" data-i18n="t2_reno" selected>Full renovation</option><option value="partial" data-i18n="t2_partial">Partial upgrade</option></select></div>
+                        <div class="field"><label data-i18n="t2_complexity">Complexity</label><select id="complexity"><option value="standard" data-i18n="t2_standard">Standard</option><option value="medium" data-i18n="t2_medium" selected>Medium</option><option value="premium" data-i18n="t2_premium">Premium</option></select></div>
+                    </div>
+                    <div class="field"><label data-i18n="t2_extras">Extras</label><div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem" id="extrasList">
+                        <label style="display:flex;align-items:center;gap:.75rem;padding:.8rem;background:var(--stone-800);border:1px solid rgba(201,168,76,.1);border-radius:var(--radius);cursor:pointer"><input type="checkbox" value="2500" style="accent-color:var(--gold)"> <span style="font-size:.85rem" data-i18n="ex_smarthome">Smart Home</span></label>
+                        <label style="display:flex;align-items:center;gap:.75rem;padding:.8rem;background:var(--stone-800);border:1px solid rgba(201,168,76,.1);border-radius:var(--radius);cursor:pointer"><input type="checkbox" value="1200" style="accent-color:var(--gold)"> <span style="font-size:.85rem" data-i18n="ex_ev">EV Charger</span></label>
+                        <label style="display:flex;align-items:center;gap:.75rem;padding:.8rem;background:var(--stone-800);border:1px solid rgba(201,168,76,.1);border-radius:var(--radius);cursor:pointer"><input type="checkbox" value="1800" style="accent-color:var(--gold)"> <span style="font-size:.85rem" data-i18n="ex_cctv">CCTV/Alarm</span></label>
+                        <label style="display:flex;align-items:center;gap:.75rem;padding:.8rem;background:var(--stone-800);border:1px solid rgba(201,168,76,.1);border-radius:var(--radius);cursor:pointer"><input type="checkbox" value="900" style="accent-color:var(--gold)"> <span style="font-size:.85rem" data-i18n="ex_network">Data Network</span></label>
+                    </div></div>
+                </div>
+                <div class="result-col">
+                    <div class="result-box">
+                        <div class="result-title" data-i18n="result_estimate">Price Estimate Range</div>
+                        <div class="result-main" id="costMain">-- <span>€</span></div>
+                        <div class="result-sub" id="costSub">Estimates exclude IVA (23%). Subject to site visit.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cable" class="tool-pane">
+            <div class="split-layout">
+                <div class="form-col">
+                    <div class="tool-header">
+                        <div class="badge-2026"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> RTIEBT Compliant</div>
+                        <h2 data-i18n="tc_title">Cable Sizing & Voltage Drop</h2>
+                        <p data-i18n="tc_desc">Calculate required cable section (mm²) conforming to PT DGEG limits (< 4% drop).</p>
+                    </div>
+                    <div class="field-row">
+                        <div class="field"><label data-i18n="tc_sys">System Voltage</label><select id="cb_sys"><option value="230" data-i18n="tc_1ph">Monofásico (230V)</option><option value="400" data-i18n="tc_3ph">Trifásico (400V)</option></select></div>
+                        <div class="field"><label data-i18n="tc_mat">Material</label><select id="cb_mat"><option value="0.0175" data-i18n="tc_cu">Copper / Cobre (Cu)</option><option value="0.028" data-i18n="tc_al">Aluminum / Alumínio (Al)</option></select></div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field"><label data-i18n="tc_len">Length (m)</label><div class="input-group"><input type="number" id="cb_len" placeholder="e.g. 50"><span class="unit-suffix">m</span></div></div>
+                        <div class="field"><label data-i18n="tc_curr">Current (Amps)</label><div class="input-group"><input type="number" id="cb_curr" placeholder="e.g. 32"><span class="unit-suffix">A</span></div></div>
+                    </div>
+                </div>
+                <div class="result-col">
+                    <div class="result-box">
+                        <div class="result-title" data-i18n="tc_res_title">Suggested Minimum Section</div>
+                        <div class="result-main" id="cbMain">-- <span>mm²</span></div>
+                        <div class="result-sub" id="cbSub" data-i18n="waiting">Awaiting input...</div>
+                    </div>
+                    <div class="result-tags" id="cbTags"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="earth" class="tool-pane">
+            <div class="split-layout">
+                <div class="form-col">
+                    <div class="tool-header">
+                        <div class="badge-2026"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> RTIEBT Part 4/5</div>
+                        <h2 data-i18n="te_title">Earthing & RCD Limit</h2>
+                        <p data-i18n="te_desc">Calculate the maximum permitted earth resistance based on RCD sensitivity.</p>
+                    </div>
+                    <div class="field">
+                        <label data-i18n="te_rcd">RCD Sensitivity (IΔn)</label>
+                        <select id="e_rcd">
+                            <option value="0.01">10 mA (High Sensitivity)</option>
+                            <option value="0.03" selected>30 mA (Standard / Bathrooms)</option>
+                            <option value="0.30">300 mA (Main Protection)</option>
+                            <option value="0.50">500 mA (Distribution)</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label data-i18n="te_env">Environment / Touch Voltage Limit</label>
+                        <select id="e_env">
+                            <option value="50" selected data-i18n="te_dry">Standard / Dry (UL = 50V)</option>
+                            <option value="25" data-i18n="te_wet">Wet / Agro (UL = 25V)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="result-col">
+                    <div class="result-box">
+                        <div class="result-title" data-i18n="te_res_title">Max Allowed Earth Resistance</div>
+                        <div class="result-main" id="eMain">-- <span>Ω</span></div>
+                        <div class="result-sub" id="eSub">Formula: Ra ≤ UL / IΔn</div>
+                    </div>
+                    <div class="result-tags" id="eTags"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pf" class="tool-pane">
+            <div class="split-layout">
+                <div class="form-col">
+                    <div class="tool-header">
+                        <div class="badge-2026"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> ERSE Rules</div>
+                        <h2 data-i18n="tp_title">Power Factor Correction</h2>
+                        <p data-i18n="tp_desc">Calculate required capacitor bank size (kVAR) to avoid reactive energy penalties.</p>
+                    </div>
+                    <div class="field">
+                        <label data-i18n="tp_pow">Active Power (P)</label>
+                        <div class="input-group"><input type="number" id="p_kw" placeholder="e.g. 50"><span class="unit-suffix">kW</span></div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field">
+                            <label data-i18n="tp_cur">Current cos(φ)</label>
+                            <input type="number" id="p_c1" step="0.01" min="0.5" max="0.99" placeholder="e.g. 0.82">
                         </div>
                         <div class="field">
-                            <label data-i18n="t1_appliances">Appliances</label>
-                            <div class="appliance-list" id="applianceList"></div>
+                            <label data-i18n="tp_tar">Target cos(φ)</label>
+                            <select id="p_c2">
+                                <option value="0.93">0.93 (Minimum Penalty Threshold)</option>
+                                <option value="0.95" selected>0.95 (Recommended)</option>
+                                <option value="0.98">0.98 (Optimal)</option>
+                            </select>
                         </div>
-                        <div class="field-row">
-                            <div class="field">
-                                <label data-i18n="t1_ac">Air Conditioning</label>
-                                <select id="acUnits">
-                                    <option value="0">0 Units</option>
-                                    <option value="1200">1 Unit (9k BTU)</option>
-                                    <option value="2400">2 Units</option>
-                                    <option value="3500">Multi-split (24k BTU)</option>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label data-i18n="t1_ev">EV Charger</label>
-                                <select id="evCharger">
-                                    <option value="0" data-i18n="t1_ev_no">None</option>
-                                    <option value="3700">3.7 kW (16A)</option>
-                                    <option value="7400">7.4 kW (32A)</option>
-                                    <option value="11000">11 kW (Three-phase)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="result-col">
-                        <div class="result-box">
-                            <div class="result-title" data-i18n="result_panel">Recommended Panel</div>
-                            <div class="result-main" id="loadMain">-- <span>A</span></div>
-                            <div class="result-sub" id="loadSub">Start adjusting values to calculate.</div>
-                            <div class="result-tags" id="loadTags"></div>
-                        </div>
-                        <div style="flex:1">
-                            <div style="font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone-400);margin-bottom:1rem" data-i18n="load_usage">Load Breakdown</div>
-                            <div id="loadBars"></div>
-                        </div>
-                        <a href="#" class="btn-tool-primary wa-link" id="btn-load-wa">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-                            <span data-i18n="get_quote">Get a Quote</span>
-                        </a>
                     </div>
                 </div>
+                <div class="result-col">
+                    <div class="result-box">
+                        <div class="result-title" data-i18n="tp_res_title">Required Capacitor Bank</div>
+                        <div class="result-main" id="pMain">-- <span>kVAR</span></div>
+                        <div class="result-sub" id="pSub" data-i18n="waiting">Awaiting input...</div>
+                    </div>
+                    <div class="result-tags" id="pTags"></div>
+                </div>
             </div>
+        </div>
 
-            <div id="cost" class="tool-pane">
-                <div class="split-layout">
-                    <div class="form-col">
-                        <div class="tool-header">
-                            <h2 data-i18n="t2_title">Installation Cost</h2>
-                            <p data-i18n="t2_desc">Instant price estimation based on current Portuguese market rates. Values update as you interact.</p>
+        <div id="conduit" class="tool-pane">
+            <div class="split-layout">
+                <div class="form-col">
+                    <div class="tool-header">
+                        <div class="badge-2026"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> RTIEBT 1/3 Fill Rule</div>
+                        <h2 data-i18n="tcon_title">Conduit Sizing (VD Tubes)</h2>
+                        <p data-i18n="tcon_desc">Find the correct PVC/VD tube diameter based on standard wire cross-sections.</p>
+                    </div>
+                    <div class="field-row">
+                        <div class="field">
+                            <label data-i18n="tcon_wire">Wire Section (H07V-U/R)</label>
+                            <select id="c_sec">
+                                <option value="1.5">1.5 mm²</option>
+                                <option value="2.5" selected>2.5 mm²</option>
+                                <option value="4.0">4.0 mm²</option>
+                                <option value="6.0">6.0 mm²</option>
+                                <option value="10.0">10.0 mm²</option>
+                                <option value="16.0">16.0 mm²</option>
+                            </select>
                         </div>
                         <div class="field">
-                            <label data-i18n="t2_area">Property size</label>
-                            <input type="range" id="costArea" min="50" max="600" value="150">
-                            <div style="display:flex;justify-content:space-between;margin-top:.5rem">
-                                <span style="font-size:.8rem;color:var(--stone-500)">50m²</span>
-                                <span style="font-size:1rem;font-weight:600;color:var(--gold)" id="costAreaVal">150m²</span>
-                                <span style="font-size:.8rem;color:var(--stone-500)">600m²</span>
-                            </div>
-                        </div>
-                        <div class="field-row">
-                            <div class="field">
-                                <label data-i18n="t2_type">Work Type</label>
-                                <select id="workType">
-                                    <option value="new" data-i18n="t2_new">New build</option>
-                                    <option value="reno" data-i18n="t2_reno" selected>Full renovation</option>
-                                    <option value="partial" data-i18n="t2_partial">Partial upgrade</option>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label data-i18n="t2_complexity">Complexity</label>
-                                <select id="complexity">
-                                    <option value="standard" data-i18n="t2_standard">Standard</option>
-                                    <option value="medium" data-i18n="t2_medium" selected>Medium (Villas)</option>
-                                    <option value="premium" data-i18n="t2_premium">Premium (Smart Home)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label data-i18n="t2_extras">Extras</label>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem" id="extrasList">
-                                <label style="display:flex;align-items:center;gap:.75rem;padding:.8rem;background:var(--stone-800);border:1px solid rgba(201,168,76,.1);border-radius:var(--radius);cursor:pointer">
-                                    <input type="checkbox" value="2500" style="width:16px;height:16px;accent-color:var(--gold)"> <span style="font-size:.85rem" data-i18n="ex_smarthome">Smart Home</span>
-                                </label>
-                                <label style="display:flex;align-items:center;gap:.75rem;padding:.8rem;background:var(--stone-800);border:1px solid rgba(201,168,76,.1);border-radius:var(--radius);cursor:pointer">
-                                    <input type="checkbox" value="1200" style="width:16px;height:16px;accent-color:var(--gold)"> <span style="font-size:.85rem" data-i18n="ex_ev">EV Charger</span>
-                                </label>
-                                <label style="display:flex;align-items:center;gap:.75rem;padding:.8rem;background:var(--stone-800);border:1px solid rgba(201,168,76,.1);border-radius:var(--radius);cursor:pointer">
-                                    <input type="checkbox" value="1800" style="width:16px;height:16px;accent-color:var(--gold)"> <span style="font-size:.85rem" data-i18n="ex_cctv">CCTV/Alarm</span>
-                                </label>
-                                <label style="display:flex;align-items:center;gap:.75rem;padding:.8rem;background:var(--stone-800);border:1px solid rgba(201,168,76,.1);border-radius:var(--radius);cursor:pointer">
-                                    <input type="checkbox" value="900" style="width:16px;height:16px;accent-color:var(--gold)"> <span style="font-size:.85rem" data-i18n="ex_network">Data Network</span>
-                                </label>
-                            </div>
+                            <label data-i18n="tcon_num">Number of Wires</label>
+                            <select id="c_num">
+                                <option value="2">2 Wires</option>
+                                <option value="3" selected>3 Wires (Ph+N+E)</option>
+                                <option value="4">4 Wires</option>
+                                <option value="5">5 Wires (3Ph+N+E)</option>
+                                <option value="6">6 Wires</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="result-col">
-                        <div class="result-box">
-                            <div class="result-title" data-i18n="result_estimate">Price Estimate Range</div>
-                            <div class="result-main" id="costMain">-- <span>€</span></div>
-                            <div class="result-sub" id="costSub">Estimates exclude IVA (23%). Subject to site visit.</div>
-                        </div>
-                        <a href="#" class="btn-tool-primary wa-link" id="btn-cost-wa">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-                            <span data-i18n="free_visit">Book Free Site Visit</span>
-                        </a>
+                </div>
+                <div class="result-col">
+                    <div class="result-box">
+                        <div class="result-title" data-i18n="tcon_res_title">Minimum Tube Diameter</div>
+                        <div class="result-main" id="cMain">-- <span>mm</span></div>
+                        <div class="result-sub" id="cSub" data-i18n="tcon_res_sub">Based on ~33% max fill ratio.</div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div id="led" class="tool-pane">
-                <div class="split-layout">
-                    <div class="form-col">
-                        <div class="tool-header">
-                            <h2 data-i18n="t3_title">LED Savings</h2>
-                            <p data-i18n="t3_desc">Calculate energy savings using current EDP/ERSE tariff rates.</p>
-                        </div>
-                        <div class="field-row">
-                            <div class="field">
-                                <label data-i18n="t3_lights">Number of Lights</label>
-                                <input type="number" id="numLights" value="20" min="1">
-                            </div>
-                            <div class="field">
-                                <label data-i18n="t3_hours">Hours per Day</label>
-                                <input type="number" id="hoursDay" value="6" min="1" max="24">
-                            </div>
-                        </div>
-                        <div class="field-row">
-                            <div class="field">
-                                <label data-i18n="t3_current">Current Bulb</label>
-                                <select id="currentBulb">
-                                    <option value="60">Halogen 60W</option>
-                                    <option value="50" selected>Halogen 50W</option>
-                                    <option value="35">CFL 35W</option>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label data-i18n="t3_led">LED Replacement</label>
-                                <select id="ledBulb">
-                                    <option value="7">LED 7W</option>
-                                    <option value="9" selected>LED 9W</option>
-                                </select>
-                            </div>
-                        </div>
+        <div id="ipik" class="tool-pane">
+            <div class="split-layout">
+                <div class="form-col">
+                    <div class="tool-header">
+                        <div class="badge-2026"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> EN 60529 / EN 50102</div>
+                        <h2 data-i18n="tip_title">IP & IK Code Generator</h2>
+                        <p data-i18n="tip_desc">Determine the required protection indices based on external influences.</p>
                     </div>
-                    <div class="result-col">
-                        <div class="result-box">
-                            <div class="result-title" data-i18n="result_savings">Annual Savings</div>
-                            <div class="result-main" id="ledMain">-- <span>€/yr</span></div>
-                            <div class="result-sub" id="ledSub">Based on 0.21€/kWh.</div>
-                        </div>
-                        <div id="ledBars"></div>
+                    
+                    <div class="field">
+                        <label data-i18n="tip_solids">Solid Objects / Dust (AE)</label>
+                        <select id="ip_solids">
+                            <option value="0" data-i18n="ae1">AE1 - Negligible</option>
+                            <option value="3" data-i18n="ae2">AE2 - Small objects (≤ 2.5 mm)</option>
+                            <option value="4" data-i18n="ae3">AE3 - Very small objects (< 1 mm)</option>
+                            <option value="5" data-i18n="ae4">AE4 / AE5 - Light/Medium dust</option>
+                            <option value="6" data-i18n="ae6">AE6 - Heavy dust</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label data-i18n="tip_water">Water / Moisture (AD)</label>
+                        <select id="ip_water">
+                            <option value="0" data-i18n="ad1">AD1 - Negligible</option>
+                            <option value="1" data-i18n="ad2">AD2 - Dripping water</option>
+                            <option value="3" data-i18n="ad3">AD3 - Spraying water (Rain)</option>
+                            <option value="4" data-i18n="ad4" selected>AD4 - Splashing water</option>
+                            <option value="5" data-i18n="ad5">AD5 - Water jets</option>
+                            <option value="6" data-i18n="ad6">AD6 - Powerful water jets</option>
+                            <option value="7" data-i18n="ad7">AD7 - Temporary immersion</option>
+                            <option value="8" data-i18n="ad8">AD8 - Continuous immersion</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label data-i18n="tip_impact">Mechanical Impact (AG)</label>
+                        <select id="ik_impact">
+                            <option value="02" data-i18n="ag1">AG1 - Low impact</option>
+                            <option value="07" data-i18n="ag2" selected>AG2 - Medium impact</option>
+                            <option value="08" data-i18n="ag3">AG3 - High impact</option>
+                            <option value="10" data-i18n="ag4">AG4 - Very High impact</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="result-col">
+                    <div class="result-box">
+                        <div class="result-title" data-i18n="tip_res_ip">Required IP Rating</div>
+                        <div class="result-main" id="ipMain" style="font-size:3rem">IP --</div>
+                    </div>
+                    <div class="result-box" style="margin-bottom:0">
+                        <div class="result-title" data-i18n="tip_res_ik">Required IK Rating</div>
+                        <div class="result-main" id="ikMain" style="font-size:3rem">IK --</div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div id="cable" class="tool-pane">
-                <div class="split-layout">
-                    <div class="form-col">
-                        <div class="tool-header">
-                            <h2 data-i18n="tc_title">Cable Sizing & Voltage Drop</h2>
-                            <p data-i18n="tc_desc">Calculate required cable section (mm²) conforming to PT DGEG limits (< 4% drop).</p>
-                        </div>
-                        <div class="field-row">
-                            <div class="field">
-                                <label data-i18n="tc_sys">System Voltage</label>
-                                <select id="cb_sys">
-                                    <option value="230" data-i18n="tc_1ph">Monofásico (230V)</option>
-                                    <option value="400" data-i18n="tc_3ph">Trifásico (400V)</option>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label data-i18n="tc_mat">Material</label>
-                                <select id="cb_mat">
-                                    <option value="0.0175" data-i18n="tc_cu">Copper / Cobre</option>
-                                    <option value="0.028" data-i18n="tc_al">Aluminum / Alumínio</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="field-row">
-                            <div class="field">
-                                <label data-i18n="tc_len">Length (m)</label>
-                                <div class="input-group">
-                                    <input type="number" id="cb_len" placeholder="e.g. 50">
-                                    <span class="unit-suffix">m</span>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label data-i18n="tc_curr">Current (Amps)</label>
-                                <div class="input-group">
-                                    <input type="number" id="cb_curr" placeholder="e.g. 32">
-                                    <span class="unit-suffix">A</span>
-                                </div>
-                            </div>
-                        </div>
+        <div id="ohms" class="tool-pane">
+            <div class="split-layout">
+                <div class="form-col">
+                    <div class="tool-header">
+                        <div class="badge-2026"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg> Quick Reference</div>
+                        <h2 data-i18n="to_title">Ohm's Law & Power</h2>
+                        <p data-i18n="to_desc">Enter any 2 values to automatically calculate the rest.</p>
                     </div>
-                    <div class="result-col">
-                        <div class="result-box">
-                            <div class="result-title" data-i18n="tc_res_title">Suggested Minimum Section</div>
-                            <div class="result-main" id="cbMain">-- <span>mm²</span></div>
-                            <div class="result-sub" id="cbSub" data-i18n="tc_res_sub">Awaiting input...</div>
-                        </div>
-                        <div class="result-tags" id="cbTags"></div>
-                        <button class="btn-tool-outline" onclick="document.getElementById('cb_len').value=''; document.getElementById('cb_curr').value=''; calcCable();" data-i18n="ohm_reset">Clear Fields</button>
+                    <div class="ohm-grid">
+                        <div class="ohm-card"><div style="color:var(--gold);font-size:1.5rem;margin-bottom:.5rem">V</div><label style="font-size:.7rem;color:var(--stone-400)">VOLTS</label><input type="number" id="o_v" placeholder="--"></div>
+                        <div class="ohm-card"><div style="color:var(--gold);font-size:1.5rem;margin-bottom:.5rem">I</div><label style="font-size:.7rem;color:var(--stone-400)">AMPS</label><input type="number" id="o_i" placeholder="--"></div>
+                        <div class="ohm-card"><div style="color:var(--gold);font-size:1.5rem;margin-bottom:.5rem">R</div><label style="font-size:.7rem;color:var(--stone-400)">OHMS</label><input type="number" id="o_r" placeholder="--"></div>
+                        <div class="ohm-card"><div style="color:var(--gold);font-size:1.5rem;margin-bottom:.5rem">P</div><label style="font-size:.7rem;color:var(--stone-400)">WATTS</label><input type="number" id="o_p" placeholder="--"></div>
                     </div>
                 </div>
-            </div>
-
-            <div id="ohms" class="tool-pane">
-                <div class="split-layout">
-                    <div class="form-col">
-                        <div class="tool-header">
-                            <h2 data-i18n="to_title">Ohm's Law & Power</h2>
-                            <p data-i18n="to_desc">Enter any 2 values to automatically calculate the rest. Perfect for quick checks.</p>
-                        </div>
-                        <div class="ohm-grid">
-                            <div class="ohm-card">
-                                <div class="ohm-icon">V</div>
-                                <label data-i18n="to_v" style="font-size:.7rem;color:var(--stone-400);text-transform:uppercase">Voltage (Volts)</label>
-                                <input type="number" id="o_v" placeholder="--">
-                            </div>
-                            <div class="ohm-card">
-                                <div class="ohm-icon">I</div>
-                                <label data-i18n="to_i" style="font-size:.7rem;color:var(--stone-400);text-transform:uppercase">Current (Amps)</label>
-                                <input type="number" id="o_i" placeholder="--">
-                            </div>
-                            <div class="ohm-card">
-                                <div class="ohm-icon">R</div>
-                                <label data-i18n="to_r" style="font-size:.7rem;color:var(--stone-400);text-transform:uppercase">Resistance (Ohms)</label>
-                                <input type="number" id="o_r" placeholder="--">
-                            </div>
-                            <div class="ohm-card">
-                                <div class="ohm-icon">P</div>
-                                <label data-i18n="to_p" style="font-size:.7rem;color:var(--stone-400);text-transform:uppercase">Power (Watts)</label>
-                                <input type="number" id="o_p" placeholder="--">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="result-col" style="justify-content: center;">
-                        <button class="btn-tool-outline" onclick="resetOhms()" data-i18n="ohm_reset">Reset / Clear All</button>
-                    </div>
+                <div class="result-col" style="justify-content:center;">
+                    <button class="btn-outline" onclick="['o_v','o_i','o_r','o_p'].forEach(id=>document.getElementById(id).value='');" data-i18n="ohm_reset">Clear All</button>
                 </div>
             </div>
-        </main>
-    </div>
-</section>
+        </div>
 
-<div class="strip">
-    <div class="strip-text" data-i18n="strip_quote">"Your home deserves more than the minimum."</div>
-    <a href="#" class="btn-dark" id="strip-cta">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-        <span data-i18n="schedule_visit">Schedule Free Visit</span>
-    </a>
-</div>
-
-<section class="contact" id="contact">
-    <div class="section-label reveal" data-i18n="contact_label">Contact</div>
-    <h2 class="section-title reveal" data-i18n="contact_title">Ready to start?</h2>
-    <p class="section-sub reveal" data-i18n="contact_sub">Talk to us today. No-obligation quote and free technical visit across the entire Porto region.</p>
-    <div class="contact-actions">
-        <a href="#" class="btn-primary" id="contact-wa">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-            <span data-i18n="wa_now">WhatsApp Now</span>
-        </a>
-        <a href="mailto:geral@gheletricidade.pt" class="btn-secondary">geral@gheletricidade.pt</a>
-    </div>
-</section>
-
-<footer>
-    <div class="footer-logo">GH<span>.</span> <span data-i18n="footer_name">Electrical &amp; Automation</span></div>
-    <p>&copy; 2025 · Porto, Portugal</p>
-    <div style="display:flex;gap:1.5rem;">
-        <a href="mailto:geral@gheletricidade.pt">Email</a>
-        <a href="#" id="footer-wa">WhatsApp</a>
-    </div>
-</footer>
-
-<div class="wa-float">
-    <div class="wa-tooltip" data-i18n="wa_tooltip">Talk to us now</div>
-    <a href="#" class="wa-btn" id="wa-float-link" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-    </a>
+    </main>
 </div>
 
 <script>
 /* ════════════════════════════════
-   TRANSLATIONS & DATA
+   TRANSLATIONS
 ════════════════════════════════ */
-const i18n = {
-    en: {
-        /* Landing Page */
-        header_cta:"Get a Quote", nav_tools_link:"Free Tools", hero_label:"Porto & Greater Porto · Premium Service", hero_title:"Electrical &amp;<br><em>Automation</em><br>for Fine Homes",
-        hero_desc:"Certified electrical installations and high-performance smart home systems for premium residences. From design to handover — with precision and elegance.",
-        wa_cta:"WhatsApp Us", see_services:"View Services", services_label:"What we do", services_title:"Solutions built<br>for your<br>residence",
-        services_sub:"Every project is unique. We work closely with architects, interior designers and homeowners to deliver the perfect result.",
-        s1_title:"Electrical Installations", s1_desc:"Full electrical design and installation using premium materials, certified to DGEG standards.",
-        s2_title:"Smart Home & Automation", s2_desc:"Control lighting, climate, blinds and security from your phone. KNX, Loxone and Legrand integration.",
-        s3_title:"Designer Lighting", s3_desc:"Custom lighting design: scenes, warm/cool tuning, premium LED and integration with automation systems.",
-        s4_title:"Security & CCTV", s4_desc:"Video surveillance, alarms and access control — all integrated into your smart home network.",
-        s5_title:"Network & Infrastructure", s5_desc:"High-speed structured cabling, full Wi-Fi coverage, internal fibre and AV distribution.",
-        s6_title:"Maintenance & Support", s6_desc:"Preventive maintenance contracts, priority call-out and software updates for existing systems.",
-        why_label:"Why choose us", why_title:"Precision and<br>elegance in<br>every project", why_sub:"Specialists in high-end residences across the Porto region. We use the best materials and technologies, with an obsessive focus on detail and client experience.",
-        stat1:"Years experience", stat2:"Projects completed", stat3:"DGEG certified", stat4:"Response guaranteed",
-        process_label:"How we work", process_title:"From first contact<br>to handover", process_sub:"A simple, transparent process — no surprises.",
-        p1_title:"First Contact", p1_desc:"Call or WhatsApp to understand your project and vision.", p2_title:"Site Visit & Quote", p2_desc:"Free technical visit and detailed proposal with no commitment.",
-        p3_title:"Installation", p3_desc:"Precise execution with care and respect for your space.", p4_title:"Handover & Support", p4_desc:"Training, documentation and ongoing post-installation support.",
-        strip_quote:'"Your home deserves more than the minimum."', schedule_visit:"Schedule Free Visit", contact_label:"Contact", contact_title:"Ready to start?",
-        contact_sub:"Talk to us today. No-obligation quote and free technical visit across the entire Porto region.", wa_now:"WhatsApp Now", wa_tooltip:"Talk to us now", footer_name:"Electrical & Automation",
+const TR = {
+en: {
+    cat_home:"Homeowner Tools", cat_pro:"Pro Electrician (DGEG)",
+    nav_load:"Load Calculator", nav_cost:"Cost Estimator", nav_cable:"Cable Sizing (Drop)", nav_earth:"Earthing & RCD", nav_pf:"Power Factor", nav_conduit:"Conduit Sizing", nav_ipik:"IP/IK Code Finder", nav_ohms:"Ohm's Law",
+    t1_title:"Home Load Calculator", t1_desc:"Adjust appliances to calculate required DGEG panel size.", t1_area:"House size", t1_appliances:"Appliances", t1_ac:"A/C Units", t1_ev:"EV Charger", t1_ev_no:"None", result_panel:"Recommended Panel", load_usage:"Load Breakdown",
+    t2_title:"Installation Cost", t2_desc:"Instant price estimation based on current Portuguese market rates.", t2_area:"Property size", t2_type:"Work Type", t2_new:"New build", t2_reno:"Full renovation", t2_partial:"Partial upgrade", t2_complexity:"Complexity", t2_standard:"Standard", t2_medium:"Medium", t2_premium:"Premium", t2_extras:"Extras", ex_smarthome:"Smart Home", ex_ev:"EV Charger", ex_cctv:"CCTV/Alarm", ex_network:"Data Network", result_estimate:"Price Estimate Range",
+    tc_title:"Cable Sizing & Voltage Drop", tc_desc:"Calculate required cable section (mm²) conforming to PT DGEG limits (< 4% drop).", tc_sys:"System Voltage", tc_1ph:"Single-phase (230V)", tc_3ph:"Three-phase (400V)", tc_mat:"Material", tc_cu:"Copper / Cobre (Cu)", tc_al:"Aluminum / Alumínio (Al)", tc_len:"Length (m)", tc_curr:"Current (Amps)", tc_res_title:"Suggested Minimum Section",
+    te_title:"Earthing & RCD Limit", te_desc:"Calculate the maximum permitted earth resistance based on RCD sensitivity.", te_rcd:"RCD Sensitivity (IΔn)", te_env:"Environment / Touch Voltage Limit", te_dry:"Standard / Dry (UL = 50V)", te_wet:"Wet / Agro (UL = 25V)", te_res_title:"Max Allowed Earth Resistance",
+    tp_title:"Power Factor Correction", tp_desc:"Calculate required capacitor bank size (kVAR) to avoid reactive energy penalties.", tp_pow:"Active Power (P)", tp_cur:"Current cos(φ)", tp_tar:"Target cos(φ)", tp_res_title:"Required Capacitor Bank",
+    tcon_title:"Conduit Sizing (VD Tubes)", tcon_desc:"Find the correct PVC/VD tube diameter based on standard wire cross-sections.", tcon_wire:"Wire Section (H07V-U/R)", tcon_num:"Number of Wires", tcon_res_title:"Minimum Tube Diameter", tcon_res_sub:"Based on ~33% max fill ratio.",
+    
+    tip_title:"IP & IK Code Generator", tip_desc:"Determine the required protection indices based on external influences.",
+    tip_solids:"Solid Objects / Dust (AE)", ae1:"AE1 - Negligible", ae2:"AE2 - Small objects (≤ 2.5 mm)", ae3:"AE3 - Very small objects (< 1 mm)", ae4:"AE4 / AE5 - Light/Medium dust", ae6:"AE6 - Heavy dust",
+    tip_water:"Water / Moisture (AD)", ad1:"AD1 - Negligible", ad2:"AD2 - Dripping water", ad3:"AD3 - Spraying water (Rain)", ad4:"AD4 - Splashing water", ad5:"AD5 - Water jets", ad6:"AD6 - Powerful water jets", ad7:"AD7 - Temporary immersion", ad8:"AD8 - Continuous immersion",
+    tip_impact:"Mechanical Impact (AG)", ag1:"AG1 - Low impact", ag2:"AG2 - Medium impact", ag3:"AG3 - High impact", ag4:"AG4 - Very High impact",
+    tip_res_ip:"Required IP Rating", tip_res_ik:"Required IK Rating",
 
-        /* Tools */
-        cat_home:"Homeowner Tools", cat_pro:"Pro Electrician (PT)",
-        nav_load:"Load Calculator", nav_cost:"Cost Estimator", nav_led:"LED Savings", nav_cable:"Cable Sizing", nav_ohms:"Ohm's Law",
-        t1_title:"Home Load Calculator", t1_desc:"Adjust your appliances to instantly see the recommended electrical panel size for your home.",
-        t1_area:"House size (m²)", t1_appliances:"Appliances", t1_ac:"Air Conditioning", t1_ev:"EV Charger", t1_ev_no:"None",
-        result_panel:"Recommended Panel", load_usage:"Load Breakdown", get_quote:"Get a Quote",
-        t2_title:"Installation Cost", t2_desc:"Instant price estimation based on current Portuguese market rates. Values update as you interact.",
-        t2_area:"Property size", t2_type:"Work Type", t2_new:"New build", t2_reno:"Full renovation", t2_partial:"Partial upgrade",
-        t2_complexity:"Complexity", t2_standard:"Standard", t2_medium:"Medium (Villas)", t2_premium:"Premium (Smart Home)",
-        t2_extras:"Extras", ex_smarthome:"Smart Home", ex_ev:"EV Charger", ex_cctv:"CCTV/Alarm", ex_network:"Data Network",
-        result_estimate:"Price Estimate Range", free_visit:"Book Free Site Visit",
-        t3_title:"LED Savings", t3_desc:"Calculate energy savings using current EDP/ERSE tariff rates.",
-        t3_lights:"Number of Lights", t3_hours:"Hours per Day", t3_current:"Current Bulb", t3_led:"LED Replacement",
-        result_savings:"Annual Savings",
-        tc_title:"Cable Sizing & Voltage Drop", tc_desc:"Calculate required cable section (mm²) conforming to PT DGEG limits (< 4% drop).",
-        tc_sys:"System Voltage", tc_1ph:"Single-phase (230V)", tc_3ph:"Three-phase (400V)", tc_mat:"Material", tc_cu:"Copper", tc_al:"Aluminum",
-        tc_len:"Length (m)", tc_curr:"Current (Amps)", tc_res_title:"Suggested Minimum Section", tc_res_sub:"Awaiting input...",
-        to_title:"Ohm's Law & Power", to_desc:"Enter any 2 values to automatically calculate the rest. Perfect for quick checks.",
-        to_v:"Voltage (Volts)", to_i:"Current (Amps)", to_r:"Resistance (Ohms)", to_p:"Power (Watts)", ohm_reset:"Reset / Clear All",
-        pt_panel_1:"Single-phase", pt_panel_3:"Three-phase", pt_panel_2:"Two-phase", pt_app_oven:"Oven", pt_app_hob:"Hob", pt_app_wm:"Washing Machine", pt_app_dw:"Dishwasher", pt_app_boiler:"Boiler", pt_app_old:"Current", pt_app_new:"With LED", pt_vd_drop:"Voltage Drop"
-    },
-    pt: {
-        /* Landing Page */
-        header_cta:"Pedir Orçamento", nav_tools_link:"Ferramentas", hero_label:"Porto & Grande Porto · Serviço Premium", hero_title:"Eletricidade &amp;<br><em>Automação</em><br>Residencial",
-        hero_desc:"Instalações elétricas certificadas e sistemas de domótica de alta performance para residências premium. Do projecto à entrega — com rigor e elegância.",
-        wa_cta:"Falar no WhatsApp", see_services:"Ver Serviços", services_label:"O que fazemos", services_title:"Soluções à<br>medida da sua<br>residência",
-        services_sub:"Cada projecto é único. Trabalhamos em estreita colaboração com arquitectos, designers de interiores e proprietários para garantir o resultado perfeito.",
-        s1_title:"Instalações Elétricas", s1_desc:"Projecto e execução de instalações elétricas completas, com materiais de primeira linha e certificação DGEG.",
-        s2_title:"Domótica & Smart Home", s2_desc:"Controle iluminação, clima, persianas e segurança a partir do seu smartphone. Integração KNX, Loxone e Legrand.",
-        s3_title:"Iluminação de Design", s3_desc:"Projecto de iluminação personalizado: cenários, luz quente/fria, LED premium e integração com automação.",
-        s4_title:"Segurança & CCTV", s4_desc:"Sistemas de videovigilância, alarmes e controlo de acessos integrados na sua rede domótica.",
-        s5_title:"Rede & Infraestrutura", s5_desc:"Redes estruturadas de alta velocidade, Wi-Fi de cobertura total, cabo de fibra interna e distribuição AV.",
-        s6_title:"Manutenção & Suporte", s6_desc:"Contrato de manutenção preventiva, assistência prioritária e actualizações de software.",
-        why_label:"Porquê escolher-nos", why_title:"Precisão e<br>elegância em<br>cada projecto", why_sub:"Especializados em residências de alto padrão na região do Porto. Trabalhamos com os melhores materiais e tecnologias, com foco no detalhe e no cliente.",
-        stat1:"Anos de experiência", stat2:"Projectos concluídos", stat3:"Certificados DGEG", stat4:"Resposta garantida",
-        process_label:"Como trabalhamos", process_title:"Do primeiro contacto<br>à chave na mão", process_sub:"Um processo simples, transparente e sem surpresas.",
-        p1_title:"Primeiro Contacto", p1_desc:"Chamada ou WhatsApp para perceber o projecto e a sua visão.", p2_title:"Visita & Orçamento", p2_desc:"Visita técnica gratuita e proposta detalhada sem compromisso.",
-        p3_title:"Execução", p3_desc:"Instalação com rigor, organização e respeito pelo seu espaço.", p4_title:"Entrega & Suporte", p4_desc:"Formação, documentação e suporte contínuo pós-instalação.",
-        strip_quote:'"A sua casa merece mais do que o mínimo."', schedule_visit:"Agendar Visita Gratuita", contact_label:"Contacto", contact_title:"Pronto para começar?",
-        contact_sub:"Fale connosco hoje. Orçamento sem compromisso e visita técnica gratuita em toda a região do Porto.", wa_now:"WhatsApp Agora", wa_tooltip:"Fale connosco agora", footer_name:"Eletricidade & Automação",
+    to_title:"Ohm's Law & Power", to_desc:"Enter any 2 values to automatically calculate the rest.", ohm_reset:"Clear All", waiting:"Awaiting input...",
+    pt_panel_1:"Single-phase", pt_panel_3:"Three-phase", pt_panel_2:"Two-phase", pt_app_oven:"Oven", pt_app_hob:"Hob", pt_app_wm:"Washing Machine", pt_app_dw:"Dishwasher", pt_app_boiler:"Boiler", pt_vd_drop:"Voltage Drop"
+},
+pt: {
+    cat_home:"Para Casa", cat_pro:"Profissional (RTIEBT)",
+    nav_load:"Quadro Elétrico", nav_cost:"Orçamento", nav_cable:"Cálculo de Cabo", nav_earth:"Terras e RCD", nav_pf:"Fator de Potência", nav_conduit:"Diâmetro de Tubos", nav_ipik:"Índices IP/IK", nav_ohms:"Lei de Ohm",
+    t1_title:"Calculadora de Carga", t1_desc:"Ajuste os equipamentos para descobrir o quadro DGEG ideal.", t1_area:"Área da Habitação", t1_appliances:"Equipamentos", t1_ac:"Ar Condicionado", t1_ev:"Carregador VE", t1_ev_no:"Nenhum", result_panel:"Quadro Recomendado", load_usage:"Distribuição de Carga",
+    t2_title:"Estimativa de Custo", t2_desc:"Valores de mercado PT atualizados.", t2_area:"Área", t2_type:"Tipo de Obra", t2_new:"Construção Nova", t2_reno:"Remodelação Total", t2_partial:"Parcial", t2_complexity:"Complexidade", t2_standard:"Standard", t2_medium:"Média", t2_premium:"Premium", t2_extras:"Extras", ex_smarthome:"Domótica", ex_ev:"Carregador VE", ex_cctv:"CCTV/Alarme", ex_network:"Rede Dados", result_estimate:"Estimativa de Preço",
+    tc_title:"Secção de Cabo & Queda de Tensão", tc_desc:"Calcula a secção mínima exigida (mm²) garantindo limite RTIEBT (< 4% queda).", tc_sys:"Sistema", tc_1ph:"Monofásico (230V)", tc_3ph:"Trifásico (400V)", tc_mat:"Material", tc_cu:"Cobre (Cu)", tc_al:"Alumínio (Al)", tc_len:"Comprimento (m)", tc_curr:"Corrente (Amp)", tc_res_title:"Secção Mínima Sugerida",
+    te_title:"Terras e Proteção Diferencial", te_desc:"Calcule a resistência de terra máxima permitida em função da sensibilidade do diferencial.", te_rcd:"Sensibilidade (IΔn)", te_env:"Ambiente / Tensão de Contacto", te_dry:"Seco / Normal (UL = 50V)", te_wet:"Húmido / Agro (UL = 25V)", te_res_title:"Resistência de Terra Máxima (Ra)",
+    tp_title:"Compensação Fator de Potência", tp_desc:"Calcule a bateria de condensadores (kVAR) necessária para evitar penalizações.", tp_pow:"Potência Ativa (P)", tp_cur:"cos(φ) Atual", tp_tar:"cos(φ) Alvo", tp_res_title:"Bateria de Condensadores Req.",
+    tcon_title:"Dimensionamento de Tubos (VD)", tcon_desc:"Diâmetro mínimo de tubo PVC baseado na regra de ocupação de 1/3 (RTIEBT).", tcon_wire:"Secção do Fio (H07V-U/R)", tcon_num:"Nº de Condutores", tcon_res_title:"Diâmetro Mínimo do Tubo", tcon_res_sub:"Baseado em ~33% de ocupação.",
+    
+    tip_title:"Gerador de Códigos IP & IK", tip_desc:"Determine os índices de proteção necessários com base nas influências externas (RTIEBT).",
+    tip_solids:"Corpos Sólidos / Poeiras (AE)", ae1:"AE1 - Desprezável", ae2:"AE2 - Pequenos objetos (≤ 2.5 mm)", ae3:"AE3 - Objetos muito pequenos (< 1 mm)", ae4:"AE4 / AE5 - Poeiras ligeiras ou médias", ae6:"AE6 - Poeiras abundantes",
+    tip_water:"Presença de Água (AD)", ad1:"AD1 - Desprezável", ad2:"AD2 - Gotas de água", ad3:"AD3 - Chuva", ad4:"AD4 - Projeção de água", ad5:"AD5 - Jatos de água", ad6:"AD6 - Jatos fortes de água", ad7:"AD7 - Imersão temporária", ad8:"AD8 - Imersão prolongada",
+    tip_impact:"Ações Mecânicas (AG)", ag1:"AG1 - Fracas", ag2:"AG2 - Médias", ag3:"AG3 - Fortes", ag4:"AG4 - Muito Fortes",
+    tip_res_ip:"Índice IP Necessário", tip_res_ik:"Índice IK Necessário",
 
-        /* Tools */
-        cat_home:"Para Casa", cat_pro:"Profissional (PT)",
-        nav_load:"Quadro Elétrico", nav_cost:"Orçamento", nav_led:"Poupança LED", nav_cable:"Queda de Tensão", nav_ohms:"Lei de Ohm",
-        t1_title:"Calculadora de Carga", t1_desc:"Ajuste os equipamentos para descobrir a potência e amperagem do quadro elétrico ideal.",
-        t1_area:"Área (m²)", t1_appliances:"Equipamentos", t1_ac:"Ar Condicionado", t1_ev:"Carregador VE", t1_ev_no:"Nenhum",
-        result_panel:"Quadro Recomendado", load_usage:"Distribuição de Carga", get_quote:"Pedir Orçamento",
-        t2_title:"Estimativa de Custo", t2_desc:"Valores de mercado PT atualizados. O cálculo é automático ao interagir.",
-        t2_area:"Área da Habitação", t2_type:"Tipo de Obra", t2_new:"Construção Nova", t2_reno:"Remodelação Total", t2_partial:"Parcial",
-        t2_complexity:"Complexidade", t2_standard:"Standard", t2_medium:"Média (Moradia)", t2_premium:"Premium (Domótica)",
-        t2_extras:"Extras", ex_smarthome:"Domótica", ex_ev:"Carregador VE", ex_cctv:"CCTV/Alarme", ex_network:"Rede Dados",
-        result_estimate:"Estimativa de Preço", free_visit:"Agendar Visita Gratuita",
-        t3_title:"Poupança LED", t3_desc:"Cálculo baseado na tarifa atual EDP/ERSE de eletricidade.",
-        t3_lights:"Nº de Lâmpadas", t3_hours:"Horas por Dia", t3_current:"Lâmpada Atual", t3_led:"Novo LED",
-        result_savings:"Poupança Anual",
-        tc_title:"Secção de Cabo & Queda de Tensão", tc_desc:"Calcula a secção mínima exigida (mm²) garantindo limite DGEG (< 4% queda).",
-        tc_sys:"Sistema", tc_1ph:"Monofásico (230V)", tc_3ph:"Trifásico (400V)", tc_mat:"Material", tc_cu:"Cobre (Cu)", tc_al:"Alumínio (Al)",
-        tc_len:"Comprimento (m)", tc_curr:"Corrente (Amp)", tc_res_title:"Secção Mínima Sugerida", tc_res_sub:"Aguardando dados...",
-        to_title:"Lei de Ohm e Potência", to_desc:"Insira 2 valores e a calculadora preenche automaticamente o resto.",
-        to_v:"Tensão (Volts)", to_i:"Corrente (Amps)", to_r:"Resistência (Ohms)", to_p:"Potência (Watts)", ohm_reset:"Limpar Tudo",
-        pt_panel_1:"Monofásico", pt_panel_3:"Trifásico", pt_panel_2:"Bifásico", pt_app_oven:"Forno", pt_app_hob:"Placa Indução", pt_app_wm:"Máq. Lavar Roupa", pt_app_dw:"Máq. Loiça", pt_app_boiler:"Cilindro / Termo", pt_app_old:"Antiga", pt_app_new:"Com LED", pt_vd_drop:"Queda Tensão"
-    }
+    to_title:"Lei de Ohm e Potência", to_desc:"Insira 2 valores e a calculadora preenche o resto.", ohm_reset:"Limpar Tudo", waiting:"Aguardando dados...",
+    pt_panel_1:"Monofásico", pt_panel_3:"Trifásico", pt_panel_2:"Bifásico", pt_app_oven:"Forno", pt_app_hob:"Placa Indução", pt_app_wm:"Máq. Lavar Roupa", pt_app_dw:"Máq. Loiça", pt_app_boiler:"Cilindro / Termo", pt_vd_drop:"Queda Tensão"
+}
 };
 
-const waMsgs = {
-    en:{ header:"Hello, I would like a quote for electrical installation.", hero:"Hello, I would like a quote.", strip:"Hello, I would like to schedule a free visit.", contact:"Hello, I would like a quote.", float:"Hello, I would like a quote for electrical installation." },
-    pt:{ header:"Olá, gostaria de um orçamento para instalação elétrica.", hero:"Olá, gostaria de um orçamento.", strip:"Olá, gostaria de agendar uma visita gratuita.", contact:"Olá, gostaria de um orçamento.", float:"Olá, gostaria de um orçamento para instalação elétrica." }
-};
-
-const WA_NUM = "351910000000"; // ← Replace with real number
-const EDP_RATE = 0.2161; 
 let LANG = 'en';
 
-function waLink(msg){ return `https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`; }
-
-/* ════════════════════════════════
-   INITIALIZATION & LANG SWAP
-════════════════════════════════ */
 function applyLang(lang) {
     LANG = lang;
-    const t = i18n[lang], m = waMsgs[lang];
-    
-    // Update texts
+    const t = TR[lang];
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const k = el.getAttribute('data-i18n');
         if (t[k] !== undefined) el.innerHTML = t[k];
     });
-
-    // Update Landing Page WA Links
-    document.getElementById('header-cta-link').href = waLink(m.header);
-    document.getElementById('wa-hero').href = waLink(m.hero);
-    document.getElementById('strip-cta').href = waLink(m.strip);
-    document.getElementById('contact-wa').href = waLink(m.contact);
-    document.getElementById('wa-float-link').href = waLink(m.float);
-    document.getElementById('footer-wa').href = waLink(m.float);
-    document.documentElement.lang = lang;
-
-    // Refresh Tools
-    buildAppliances();
-    runAllCalculations();
+    buildAppliances(); runAllCalculations();
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        applyLang(btn.dataset.lang);
+        btn.classList.add('active'); applyLang(btn.dataset.lang);
     });
 });
 
 /* ════════════════════════════════
-   TOOLS DASHBOARD NAVIGATION
+   DASHBOARD NAVIGATION
 ════════════════════════════════ */
 document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -856,228 +548,156 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
 });
 
 /* ════════════════════════════════
-   TOOLS LOGIC
+   CALCULATORS LOGIC
 ════════════════════════════════ */
-const APPLIANCES = [
-    {key:'oven', w:2500, default:1}, {key:'hob', w:7200, default:1},
-    {key:'wm', w:2000, default:1}, {key:'dw', w:1800, default:1}, {key:'boiler', w:3000, default:1}
-];
+const APPLIANCES = [ {key:'oven', w:2500, default:1}, {key:'hob', w:7200, default:1}, {key:'wm', w:2000, default:1}, {key:'dw', w:1800, default:1}, {key:'boiler', w:3000, default:1} ];
 
 function buildAppliances(){
-    const list = document.getElementById('applianceList');
-    list.innerHTML='';
+    const list = document.getElementById('applianceList'); list.innerHTML='';
     APPLIANCES.forEach((a, i)=>{
-        const name = i18n[LANG][`pt_app_${a.key}`];
-        list.innerHTML += `
-            <div class="appliance-row" data-w="${a.w}" data-name="${name}">
-                <div>
-                    <div class="appliance-name">${name}</div>
-                    <div class="appliance-watts">${a.w}W</div>
-                </div>
-                <div class="qty-ctrl">
-                    <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
-                    <div class="qty-val" id="qty_${i}">${a.default}</div>
-                    <button class="qty-btn" onclick="changeQty(this,1)">+</button>
-                </div>
-            </div>`;
+        const name = TR[LANG][`pt_app_${a.key}`];
+        list.innerHTML += `<div class="appliance-row" data-w="${a.w}" data-name="${name}"><div><div class="appliance-name">${name}</div><div class="appliance-watts">${a.w}W</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="changeQty(this,-1)">−</button><div class="qty-val">${a.default}</div><button class="qty-btn" onclick="changeQty(this,1)">+</button></div></div>`;
     });
 }
-
 function changeQty(btn, delta){
-    const valEl = btn.parentElement.querySelector('.qty-val');
-    let n = parseInt(valEl.textContent) + delta;
-    if(n<0) n=0; if(n>9) n=9;
-    valEl.textContent = n;
-    calcLoad();
+    const valEl = btn.parentElement.querySelector('.qty-val'); let n = parseInt(valEl.textContent) + delta;
+    if(n<0) n=0; if(n>9) n=9; valEl.textContent = n; calcLoad();
 }
 
 function attachAutoCalc() {
     ['houseArea', 'acUnits', 'evCharger'].forEach(id => document.getElementById(id).addEventListener('input', calcLoad));
-    ['costArea', 'workType', 'complexity'].forEach(id => document.getElementById(id).addEventListener('input', (e) => {
-        if(id==='costArea') document.getElementById('costAreaVal').textContent = e.target.value + 'm²';
-        calcCost();
-    }));
+    ['costArea', 'workType', 'complexity'].forEach(id => document.getElementById(id).addEventListener('input', (e) => { if(id==='costArea') document.getElementById('costAreaVal').textContent = e.target.value + 'm²'; calcCost(); }));
     document.querySelectorAll('#extrasList input').forEach(el => el.addEventListener('change', calcCost));
-    ['numLights', 'hoursDay', 'currentBulb', 'ledBulb'].forEach(id => document.getElementById(id).addEventListener('input', calcLED));
     ['cb_sys', 'cb_mat', 'cb_len', 'cb_curr'].forEach(id => document.getElementById(id).addEventListener('input', calcCable));
+    ['e_rcd', 'e_env'].forEach(id => document.getElementById(id).addEventListener('input', calcEarth));
+    ['p_kw', 'p_c1', 'p_c2'].forEach(id => document.getElementById(id).addEventListener('input', calcPF));
+    ['c_sec', 'c_num'].forEach(id => document.getElementById(id).addEventListener('input', calcConduit));
+    ['ip_solids', 'ip_water', 'ik_impact'].forEach(id => document.getElementById(id).addEventListener('input', calcIPIK));
     ['o_v', 'o_i', 'o_r', 'o_p'].forEach(id => document.getElementById(id).addEventListener('input', (e) => calcOhms(id)));
 }
+function runAllCalculations() { calcLoad(); calcCost(); calcCable(); calcEarth(); calcPF(); calcConduit(); calcIPIK(); }
 
-function runAllCalculations() { calcLoad(); calcCost(); calcLED(); calcCable(); }
-
+/* 1. LOAD */
 function calcLoad(){
-    let totalW = parseInt(document.getElementById('houseArea').value || 150) * 8; // base lighting
-    const barData = [];
-    document.querySelectorAll('.appliance-row').forEach(row => {
-        const qty = parseInt(row.querySelector('.qty-val').textContent), w = parseInt(row.dataset.w);
-        if(qty > 0) { totalW += (qty * w); barData.push({l: row.dataset.name, w: (qty*w)}); }
-    });
-    const acW = parseInt(document.getElementById('acUnits').value);
-    if(acW > 0) { totalW += acW; barData.push({l: i18n[LANG].t1_ac, w: acW}); }
-    const evW = parseInt(document.getElementById('evCharger').value);
-    if(evW > 0) { totalW += evW; barData.push({l: i18n[LANG].ex_ev, w: evW}); }
-
+    let totalW = parseInt(document.getElementById('houseArea').value || 150) * 8; const barData = [];
+    document.querySelectorAll('.appliance-row').forEach(row => { const qty = parseInt(row.querySelector('.qty-val').textContent), w = parseInt(row.dataset.w); if(qty > 0) { totalW += (qty * w); barData.push({l: row.dataset.name, w: (qty*w)}); } });
+    const acW = parseInt(document.getElementById('acUnits').value); if(acW > 0) { totalW += acW; barData.push({l: TR[LANG].t1_ac, w: acW}); }
+    const evW = parseInt(document.getElementById('evCharger').value); if(evW > 0) { totalW += evW; barData.push({l: TR[LANG].ex_ev, w: evW}); }
     const demandKVA = (totalW * 0.65) / 1000 / 0.9;
-    let panelA = 16, panelType = i18n[LANG].pt_panel_1;
-    if(demandKVA > 13.8) { panelA = 63; panelType = i18n[LANG].pt_panel_3; }
-    else if(demandKVA > 9.2) { panelA = 60; panelType = i18n[LANG].pt_panel_2; }
-    else if(demandKVA > 6.9) { panelA = 40; panelType = i18n[LANG].pt_panel_2; }
-    else if(demandKVA > 3.45) { panelA = 32; panelType = i18n[LANG].pt_panel_1; }
-
-    document.getElementById('loadMain').innerHTML = `${panelA}<span>A</span>`;
-    document.getElementById('loadSub').textContent = `${panelType} · ${(totalW/1000).toFixed(1)} kW Total`;
-
+    let panelA = 16, panelType = TR[LANG].pt_panel_1;
+    if(demandKVA > 13.8) { panelA = 63; panelType = TR[LANG].pt_panel_3; } else if(demandKVA > 9.2) { panelA = 60; panelType = TR[LANG].pt_panel_2; } else if(demandKVA > 6.9) { panelA = 40; panelType = TR[LANG].pt_panel_2; } else if(demandKVA > 3.45) { panelA = 32; panelType = TR[LANG].pt_panel_1; }
+    document.getElementById('loadMain').innerHTML = `${panelA}<span>A</span>`; document.getElementById('loadSub').textContent = `${panelType} · ${(totalW/1000).toFixed(1)} kW Total`;
     const max = Math.max(...barData.map(b=>b.w));
-    document.getElementById('loadBars').innerHTML = barData.sort((a,b)=>b.w-a.w).slice(0,4).map(b => `
-        <div class="bar-row"><div class="bar-label">${b.l}</div><div class="bar-track"><div class="bar-fill" style="width:${(b.w/max)*100}%;background:var(--gold)"></div></div><div class="bar-val">${(b.w/1000).toFixed(1)}kW</div></div>
-    `).join('');
-
-    const msg = LANG==='pt' ? `Olá, usei o calculador e recomendo-me um quadro de ${panelA}A (${panelType}). Gostaria de um orçamento.` : `Hi, the calculator recommends a ${panelA}A (${panelType}) panel. I'd like a quote.`;
-    document.getElementById('btn-load-wa').href = waLink(msg);
+    document.getElementById('loadBars').innerHTML = barData.sort((a,b)=>b.w-a.w).slice(0,4).map(b => `<div class="bar-row"><div class="bar-label">${b.l}</div><div class="bar-track"><div class="bar-fill" style="width:${(b.w/max)*100}%;background:var(--gold)"></div></div><div class="bar-val">${(b.w/1000).toFixed(1)}kW</div></div>`).join('');
 }
 
+/* 2. COST */
 function calcCost(){
     const area = parseInt(document.getElementById('costArea').value), wt = document.getElementById('workType').value, cx = document.getElementById('complexity').value;
     const baseR = {new:{standard:28,medium:38,premium:58}, reno:{standard:35,medium:50,premium:80}, partial:{standard:15,medium:22,premium:38}};
-    let total = baseR[wt][cx] * area;
-    document.querySelectorAll('#extrasList input:checked').forEach(cb => total += parseInt(cb.value));
+    let total = baseR[wt][cx] * area; document.querySelectorAll('#extrasList input:checked').forEach(cb => total += parseInt(cb.value));
     const low = Math.round(total*0.85/100)*100, high = Math.round(total*1.15/100)*100;
     document.getElementById('costMain').innerHTML = `${low.toLocaleString('pt-PT')} <span>- ${high.toLocaleString('pt-PT')}€</span>`;
-    
-    const msg = LANG==='pt' ? `Olá, calculei o custo de instalação elétrica (${area}m²) e deu-me ~${low}€. Podemos agendar uma visita?` : `Hi, I calculated my installation cost (${area}m²) at ~€${low}. Can we book a free visit?`;
-    document.getElementById('btn-cost-wa').href = waLink(msg);
 }
 
-function calcLED(){
-    const n = parseInt(document.getElementById('numLights').value) || 0, h = parseInt(document.getElementById('hoursDay').value) || 0;
-    const oldW = parseInt(document.getElementById('currentBulb').value), newW = parseInt(document.getElementById('ledBulb').value);
-    const oldKWh = (n * oldW / 1000) * h * 365, newKWh = (n * newW / 1000) * h * 365;
-    const sav = (oldKWh - newKWh) * EDP_RATE;
-
-    document.getElementById('ledMain').innerHTML = `${Math.round(sav)} <span>€ / ${LANG==='pt'?'ano':'year'}</span>`;
-    document.getElementById('ledBars').innerHTML = `
-        <div class="bar-row"><div class="bar-label">${i18n[LANG].pt_app_old}</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--red)"></div></div><div class="bar-val">${Math.round(oldKWh)}kWh</div></div>
-        <div class="bar-row"><div class="bar-label">${i18n[LANG].pt_app_new}</div><div class="bar-track"><div class="bar-fill" style="width:${(newKWh/oldKWh)*100}%;background:var(--green)"></div></div><div class="bar-val">${Math.round(newKWh)}kWh</div></div>`;
-}
-
+/* 3. CABLE */
 function calcCable(){
     const v = parseInt(document.getElementById('cb_sys').value), mat = parseFloat(document.getElementById('cb_mat').value);
     const len = parseFloat(document.getElementById('cb_len').value), curr = parseFloat(document.getElementById('cb_curr').value);
     const mainEl = document.getElementById('cbMain'), subEl = document.getElementById('cbSub'), tagsEl = document.getElementById('cbTags');
-
-    if(!len || !curr || len <= 0 || curr <= 0) {
-        mainEl.innerHTML = `-- <span>mm²</span>`; subEl.textContent = i18n[LANG].tc_res_sub; tagsEl.innerHTML = ''; return;
-    }
+    if(!len || !curr) { mainEl.innerHTML = `-- <span>mm²</span>`; subEl.textContent = TR[LANG].waiting; tagsEl.innerHTML = ''; return; }
     const k = v === 400 ? Math.sqrt(3) : 2, sizes = [1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95, 120];
     let bestSize = sizes[sizes.length-1], finalDropV = 0, finalDropPct = 100;
-    for(let s of sizes) {
-        let dropV = (k * mat * len * curr) / s, dropPct = (dropV / v) * 100;
-        if(dropPct <= 4) { bestSize = s; finalDropV = dropV; finalDropPct = dropPct; break; }
-    }
-    mainEl.innerHTML = `${bestSize} <span>mm²</span>`;
-    subEl.textContent = `${i18n[LANG].pt_vd_drop}: ${finalDropV.toFixed(2)}V (${finalDropPct.toFixed(2)}%)`;
-    let tagColor = finalDropPct < 3 ? 'rtag-green' : (finalDropPct <= 5 ? 'rtag-amber' : 'rtag-red');
-    tagsEl.innerHTML = `<span class="rtag ${tagColor}">ΔU = ${finalDropPct.toFixed(1)}%</span>`;
+    for(let s of sizes) { let dropV = (k * mat * len * curr) / s, dropPct = (dropV / v) * 100; if(dropPct <= 4) { bestSize = s; finalDropV = dropV; finalDropPct = dropPct; break; } }
+    mainEl.innerHTML = `${bestSize} <span>mm²</span>`; subEl.textContent = `${TR[LANG].pt_vd_drop}: ${finalDropV.toFixed(2)}V (${finalDropPct.toFixed(2)}%)`;
+    tagsEl.innerHTML = `<span class="rtag ${finalDropPct < 3 ? 'rtag-green' : (finalDropPct <= 5 ? 'rtag-amber' : 'rtag-red')}">ΔU = ${finalDropPct.toFixed(1)}%</span>`;
 }
 
+/* 4. EARTHING */
+function calcEarth(){
+    const idn = parseFloat(document.getElementById('e_rcd').value);
+    const ul = parseFloat(document.getElementById('e_env').value);
+    const ra = ul / idn;
+    document.getElementById('eMain').innerHTML = `${ra.toFixed(0)} <span>Ω</span>`;
+    
+    let tags = `<span class="rtag rtag-blue">IΔn = ${idn*1000}mA</span>`;
+    if(ra > 500) tags += `<span class="rtag rtag-amber">${LANG==='pt'?'Recomendado < 100Ω':'Rec. < 100Ω'}</span>`;
+    else tags += `<span class="rtag rtag-green">${LANG==='pt'?'Seguro':'Safe'}</span>`;
+    document.getElementById('eTags').innerHTML = tags;
+}
+
+/* 5. POWER FACTOR */
+function calcPF(){
+    const p = parseFloat(document.getElementById('p_kw').value);
+    const c1 = parseFloat(document.getElementById('p_c1').value);
+    const c2 = parseFloat(document.getElementById('p_c2').value);
+    const mainEl = document.getElementById('pMain'), subEl = document.getElementById('pSub'), tagsEl = document.getElementById('pTags');
+
+    if(!p || !c1 || c1 >= c2) { mainEl.innerHTML = `-- <span>kVAR</span>`; subEl.textContent = TR[LANG].waiting; tagsEl.innerHTML = ''; return; }
+
+    const tan1 = Math.tan(Math.acos(c1));
+    const tan2 = Math.tan(Math.acos(c2));
+    const qc = p * (tan1 - tan2);
+
+    mainEl.innerHTML = `${qc.toFixed(1)} <span>kVAR</span>`;
+    subEl.textContent = LANG==='pt' ? `Melhorar de ${c1} para ${c2}` : `Improve from ${c1} to ${c2}`;
+    tagsEl.innerHTML = `<span class="rtag rtag-green">ERSE Compliant</span>`;
+}
+
+/* 6. CONDUIT SIZING */
+function calcConduit(){
+    const sec = parseFloat(document.getElementById('c_sec').value);
+    const n = parseInt(document.getElementById('c_num').value);
+    const extDiam = { 1.5: 2.8, 2.5: 3.4, 4.0: 3.9, 6.0: 4.4, 10.0: 5.6, 16.0: 6.7 };
+    const d = extDiam[sec];
+    const wireArea = Math.PI * Math.pow(d/2, 2);
+    const totalWireArea = wireArea * n;
+
+    const tubes = [
+        {ext: 16, inn: 13.0}, {ext: 20, inn: 16.8}, {ext: 25, inn: 21.5},
+        {ext: 32, inn: 28.0}, {ext: 40, inn: 35.0}, {ext: 50, inn: 44.0}
+    ];
+
+    let recommended = 50; 
+    for(let t of tubes) {
+        let tubeArea = Math.PI * Math.pow(t.inn/2, 2);
+        if(totalWireArea <= tubeArea * 0.33) {
+            recommended = t.ext;
+            break;
+        }
+    }
+    document.getElementById('cMain').innerHTML = `VD ${recommended} <span>mm</span>`;
+}
+
+/* 7. IP & IK CODE FINDER */
+function calcIPIK(){
+    const solids = document.getElementById('ip_solids').value;
+    const water = document.getElementById('ip_water').value;
+    const impact = document.getElementById('ik_impact').value;
+    
+    document.getElementById('ipMain').textContent = `IP ${solids}${water}`;
+    document.getElementById('ikMain').textContent = `IK ${impact}`;
+}
+
+/* 8. OHMS LAW */
 function calcOhms(sourceId) {
     let v = parseFloat(document.getElementById('o_v').value), i = parseFloat(document.getElementById('o_i').value);
     let r = parseFloat(document.getElementById('o_r').value), p = parseFloat(document.getElementById('o_p').value);
     let count = 0;
     if(!isNaN(v)) count++; if(!isNaN(i)) count++; if(!isNaN(r)) count++; if(!isNaN(p)) count++;
     if(count >= 2) {
-        if(!isNaN(v) && !isNaN(i)) { r = v/i; p = v*i; }
-        else if(!isNaN(v) && !isNaN(r)) { i = v/r; p = (v*v)/r; }
-        else if(!isNaN(v) && !isNaN(p)) { i = p/v; r = (v*v)/p; }
-        else if(!isNaN(i) && !isNaN(r)) { v = i*r; p = i*i*r; }
-        else if(!isNaN(i) && !isNaN(p)) { v = p/i; r = p/(i*i); }
-        else if(!isNaN(r) && !isNaN(p)) { v = Math.sqrt(p*r); i = Math.sqrt(p/r); }
-
+        if(!isNaN(v) && !isNaN(i)) { r = v/i; p = v*i; } else if(!isNaN(v) && !isNaN(r)) { i = v/r; p = (v*v)/r; }
+        else if(!isNaN(v) && !isNaN(p)) { i = p/v; r = (v*v)/p; } else if(!isNaN(i) && !isNaN(r)) { v = i*r; p = i*i*r; }
+        else if(!isNaN(i) && !isNaN(p)) { v = p/i; r = p/(i*i); } else if(!isNaN(r) && !isNaN(p)) { v = Math.sqrt(p*r); i = Math.sqrt(p/r); }
         if(sourceId !== 'o_v') document.getElementById('o_v').value = v.toFixed(2);
         if(sourceId !== 'o_i') document.getElementById('o_i').value = i.toFixed(2);
         if(sourceId !== 'o_r') document.getElementById('o_r').value = r.toFixed(2);
         if(sourceId !== 'o_p') document.getElementById('o_p').value = p.toFixed(2);
     }
 }
-function resetOhms() { ['o_v', 'o_i', 'o_r', 'o_p'].forEach(id => document.getElementById(id).value = ''); }
 
-/* ═══════ ENERGY CANVAS BACKGROUND ═══════ */
-(function(){
-    const canvas = document.getElementById('energyCanvas');
-    const ctx = canvas.getContext('2d');
-    function resize(){ canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-    resize();
-    window.addEventListener('resize', resize);
-
-    class Particle {
-        constructor(){ this.reset(); }
-        reset(){ this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.vx = (Math.random()-.5)*.4; this.vy = (Math.random()-.5)*.4; this.r = Math.random()*1.4+.3; this.alpha = Math.random()*.45+.1; this.life = Math.random()*220+80; this.age = 0; this.col = Math.random()>.5 ? '0,212,255' : '201,168,76'; }
-        tick(){ this.x+=this.vx; this.y+=this.vy; this.age++; if(this.age>this.life) this.reset(); }
-        draw(){ const f = Math.sin((this.age/this.life)*Math.PI); ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=`rgba(${this.col},${this.alpha*f})`; ctx.fill(); }
-    }
-    const particles = Array.from({length:80},()=>new Particle());
-
-    function bolt(x1,y1,x2,y2,rough,depth){
-        if(depth===0){ ctx.lineTo(x2,y2); return; }
-        const mx=(x1+x2)/2+(Math.random()-.5)*rough, my=(y1+y2)/2+(Math.random()-.5)*rough;
-        bolt(x1,y1,mx,my,rough/2,depth-1); bolt(mx,my,x2,y2,rough/2,depth-1);
-    }
-
-    class Arc {
-        constructor(){ this.reset(); }
-        reset(){
-            const w=canvas.width, h=canvas.height; const side=Math.floor(Math.random()*4);
-            if(side===0){this.x1=Math.random()*w;this.y1=0;} else if(side===1){this.x1=w;this.y1=Math.random()*h;} else if(side===2){this.x1=Math.random()*w;this.y1=h;} else{this.x1=0;this.y1=Math.random()*h;}
-            const ang=Math.random()*Math.PI*2, len=Math.random()*Math.min(w,h)*.45+Math.min(w,h)*.08;
-            this.x2=this.x1+Math.cos(ang)*len; this.y2=this.y1+Math.sin(ang)*len;
-            this.rough=Math.random()*110+35; this.alpha=Math.random()*.45+.1; this.lw=Math.random()*1.1+.2; this.flicker=0; this.maxFlicker=Math.floor(Math.random()*5)+2; this.col=Math.random()>.3?'0,212,255':'125,249,255'; this.glow=Math.random()>.45;
-        }
-        draw(){
-            this.flicker++; if(this.flicker>=this.maxFlicker){ this.reset(); return; }
-            const a=this.alpha*(1-this.flicker/this.maxFlicker);
-            ctx.beginPath(); ctx.moveTo(this.x1,this.y1); bolt(this.x1,this.y1,this.x2,this.y2,this.rough,5); ctx.strokeStyle=`rgba(${this.col},${a*.18})`; ctx.lineWidth=this.lw*5; ctx.shadowBlur=0; ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(this.x1,this.y1); bolt(this.x1,this.y1,this.x2,this.y2,this.rough,5); ctx.strokeStyle=`rgba(${this.col},${a})`; ctx.lineWidth=this.lw; if(this.glow){ ctx.shadowColor=`rgba(0,212,255,${a*.9})`; ctx.shadowBlur=20; } ctx.stroke(); ctx.shadowBlur=0;
-        }
-    }
-    const arcs = Array.from({length:9},()=>new Arc());
-    arcs.forEach((a,i)=>{ for(let j=0;j<i*4;j++) a.flicker++; });
-
-    function drawGrid(){
-        const s=68, t=Date.now()*.00025; ctx.lineWidth=.35;
-        for(let x=0;x<canvas.width;x+=s){ for(let y=0;y<canvas.height;y+=s){ const pulse=Math.sin(x*.018+t)*Math.cos(y*.018+t); ctx.strokeStyle=`rgba(0,212,255,${(pulse+1)/2*.055})`; ctx.beginPath(); ctx.rect(x,y,s,s); ctx.stroke(); } }
-    }
-
-    const nodes = Array.from({length:10},()=>({ x:Math.random(),y:Math.random(), r:Math.random()*65+18, ph:Math.random()*Math.PI*2, sp:Math.random()*.012+.003, col:Math.random()>.5?'0,212,255':'201,168,76' }));
-    function drawNodes(){
-        const t=Date.now()*.001;
-        nodes.forEach(n=>{
-            const a=(Math.sin(t*n.sp*60+n.ph)+1)/2*.11, grd=ctx.createRadialGradient(n.x*canvas.width,n.y*canvas.height,0,n.x*canvas.width,n.y*canvas.height,n.r);
-            grd.addColorStop(0,`rgba(${n.col},${a})`); grd.addColorStop(1,`rgba(${n.col},0)`); ctx.fillStyle=grd; ctx.beginPath(); ctx.arc(n.x*canvas.width,n.y*canvas.height,n.r,0,Math.PI*2); ctx.fill();
-        });
-    }
-
-    let arcTimer=0;
-    function loop(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        drawGrid(); drawNodes(); particles.forEach(p=>{ p.tick(); p.draw(); }); arcs.forEach(a=>a.draw());
-        arcTimer++; if(arcTimer%20===0){ const d=arcs.find(a=>a.flicker>=a.maxFlicker); if(d) d.reset(); }
-        if(arcTimer%7===0 && Math.random()>.65){ const d=arcs.find(a=>a.flicker>=a.maxFlicker); if(d) d.reset(); }
-        requestAnimationFrame(loop);
-    }
-    loop();
-})();
-
-/* ═══════ SCROLL / REVEAL ═══════ */
-window.addEventListener('scroll', () => { document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60); });
-
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); observer.unobserve(e.target); }});
-},{ threshold:.08, rootMargin:'0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-// Boot
-applyLang('en');
-attachAutoCalc();
+/* INIT */
+applyLang('en'); attachAutoCalc();
 </script>
 </body>
 </html>
