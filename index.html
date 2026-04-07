@@ -61,9 +61,7 @@
         /* ── HERO ── */
         .hero { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 2.5rem 9rem; overflow: hidden; background-color: var(--stone-950); }
         
-        /* UPDATED: Changed cover to contain to zoom out, and pinned it to the right */
         .hero-photo { position: absolute; inset: 0; background: url('hero-bg.jpg') center center / cover no-repeat; filter: brightness(0.35); }
-
         .hero-grad { position: absolute; inset: 0; background: linear-gradient(to right, rgba(12,11,9,0.88) 0%, rgba(12,11,9,0.55) 45%, rgba(12,11,9,0.15) 100%); }
         
         #energyCanvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -123,6 +121,14 @@
         .step-circle { width:52px;height:52px; border:1px solid var(--gold); background:var(--stone-900); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 2rem; font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--gold); }
         .process-step h4 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:var(--white); margin-bottom:.75rem; }
         .process-step p { font-size:.85rem; font-weight:300; color:var(--stone-500); line-height:1.6; }
+        
+        /* FAQ Section */
+        .faq { background: var(--stone-950); }
+        .faq-grid { display: grid; gap: 1rem; max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--stone-900); padding: 2rem; border-radius: 3px; border-left: 2px solid transparent; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: var(--gold); }
+        .faq-q { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--white); margin-bottom: 0.8rem; }
+        .faq-a { font-size: 0.95rem; font-weight: 300; color: var(--stone-300); line-height: 1.6; }
 
         /* ── STRIP & FOOTER ── */
         .strip { background:var(--gold); padding:3rem 2.5rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
@@ -134,12 +140,15 @@
         .contact .section-sub { margin:0 auto 3rem; text-align:center; }
         .contact-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
 
-        footer { background:var(--stone-900); border-top:1px solid rgba(201,168,76,.15); padding:2.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+        footer { background:var(--stone-900); border-top:1px solid rgba(201,168,76,.15); padding:3.5rem 2.5rem; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:2rem; }
         .footer-logo { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--white); }
         .footer-logo span { color:var(--gold); }
-        footer p { font-size:.78rem; color:var(--stone-500); }
-        footer a { color:var(--stone-500); text-decoration:none; font-size:.78rem; transition:color 0.3s; }
-        footer a:hover { color:var(--gold); }
+        .footer-info p { font-size:.85rem; color:var(--stone-400); margin-top:0.4rem; line-height: 1.5; }
+        .footer-info a { color:var(--stone-400); text-decoration:none; transition:color 0.3s; }
+        .footer-info a:hover { color:var(--gold); }
+        
+        .footer-links a { color:var(--stone-500); text-decoration:none; font-size:.85rem; transition:color 0.3s; display: block; margin-bottom: 0.5rem; }
+        .footer-links a:hover { color:var(--gold); }
 
         .wa-float { position:fixed; bottom:2rem; right:2rem; z-index:300; display:flex; flex-direction:column; align-items:flex-end; gap:.75rem; }
         .wa-tooltip { background:var(--stone-800); color:var(--white); font-size:.78rem; padding:.5rem 1rem; border:1px solid rgba(201,168,76,.3); opacity:0; transform:translateX(10px); transition:all 0.3s; pointer-events:none; white-space:nowrap; }
@@ -174,10 +183,9 @@
             .why-image img{height:320px}
             .why-stats{grid-template-columns:1fr 1fr}
             .process-steps{grid-template-columns:1fr;gap:2.5rem}
-            footer{flex-direction:column;text-align:center}
+            footer{flex-direction:column;text-align:left;}
             /* Adjust gradient for mobile so text stays readable */
             .hero-grad { background: linear-gradient(180deg, rgba(12,11,9,0.5) 0%, rgba(12,11,9,0.85) 60%, var(--stone-950) 100%); }
-
         }
         @media(max-width:600px){
             .hero h1{font-size:2.5rem}
@@ -186,28 +194,28 @@
         }
     </style>
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HomeAndConstructionBusiness",
-  "name": "Drivenb Electrical Installation",
-  "image": "https://drivenb.com/hero-bg.jpg",
-  "description": "Premium electrical troubleshooting, flawless Wi-Fi networks, and IT support for expats and professionals in Porto.",
-  "url": "https://drivenb.com",
-  "telephone": "+351933657905",
-  "areaServed": {
-    "@type": "City",
-    "name": "Porto",
-    "containedInPlace": {
-      "@type": "Country",
-      "name": "Portugal"
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Drivenb Electrical Installation",
+      "image": "https://drivenb.com/hero-bg.jpg",
+      "description": "Premium electrical troubleshooting, flawless Wi-Fi networks, and IT support for expats and professionals in Porto.",
+      "url": "https://drivenb.com",
+      "telephone": "+351933657905",
+      "email": "gabrielrdavid@gmail.com",
+      "areaServed": {
+        "@type": "City",
+        "name": "Porto",
+        "containedInPlace": {
+          "@type": "Country",
+          "name": "Portugal"
+        }
+      },
+      "priceRange": "$$"
     }
-  },
-  "priceRange": "$$"
-}
-</script>
+    </script>
 </head>
 <body>
-
 
 <header id="header">
     <div class="header-left">
@@ -227,136 +235,166 @@
     </div>
 </header>
 
-<section class="hero">
-    <div class="hero-photo"></div>
-    <div class="hero-grad"></div>
-    <canvas id="energyCanvas"></canvas>
-    <div class="hero-veins"></div>
-    <div class="hero-content">
-        <div class="hero-label" data-i18n="hero_label">Porto · English Speaking Service</div>
-        <h1 data-i18n="hero_title">Electrical &amp;<br><em>Home Tech</em><br>Pro</h1>
-        <p class="hero-desc" data-i18n="hero_desc">Premium electrical installations, modern smart home upgrades, and flawless Wi-Fi networks in Porto. Fluent English, pristine work, and zero hassle.</p>
-        <div class="hero-actions">
-            <a href="#" class="btn-primary" id="wa-hero">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-                <span data-i18n="wa_cta">WhatsApp Us</span>
-            </a>
-            <a href="#services" class="btn-secondary" data-i18n="see_services">How We Help</a>
+<main>
+    <section class="hero">
+        <div class="hero-photo"></div>
+        <div class="hero-grad"></div>
+        <canvas id="energyCanvas"></canvas>
+        <div class="hero-veins"></div>
+        <div class="hero-content">
+            <div class="hero-label" data-i18n="hero_label">Porto · English Speaking Service</div>
+            <h1 data-i18n="hero_title">Electrical &amp;<br><em>Home Tech</em><br>Pro</h1>
+            <p class="hero-desc" data-i18n="hero_desc">Premium electrical installations, modern smart home upgrades, and flawless Wi-Fi networks in Porto. Fluent English, pristine work, and zero hassle.</p>
+            <div class="hero-actions">
+                <a href="#" class="btn-primary" id="wa-hero">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                    <span data-i18n="wa_cta">WhatsApp Us</span>
+                </a>
+                <a href="#services" class="btn-secondary" data-i18n="see_services">How We Help</a>
+            </div>
         </div>
-    </div>
-    <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
-</section>
+        <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+    </section>
 
-<div class="gold-divider"></div>
+    <div class="gold-divider"></div>
 
-<section class="services" id="services">
-    <div class="services-header reveal">
-        <div>
-            <div class="section-label" data-i18n="services_label">Our Expertise</div>
-            <h2 class="section-title" data-i18n="services_title">Power & connectivity,<br>solved.</h2>
+    <section class="services" id="services">
+        <div class="services-header reveal">
+            <div>
+                <div class="section-label" data-i18n="services_label">Our Expertise</div>
+                <h2 class="section-title" data-i18n="services_title">Power & connectivity,<br>solved.</h2>
+            </div>
+            <p class="section-sub" data-i18n="services_sub">From hanging a new chandelier to rescuing a dead laptop or blanket-covering your stone house in high-speed Wi-Fi. We are your one contact for home tech.</p>
         </div>
-        <p class="section-sub" data-i18n="services_sub">From hanging a new chandelier to rescuing a dead laptop or blanket-covering your stone house in high-speed Wi-Fi. We are your one contact for home tech.</p>
-    </div>
-    <div class="services-grid">
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            <h3 data-i18n="s1_title">Electrical Fixes & Installs</h3>
-            <p data-i18n="s1_desc">Faulty sockets, new light fixtures, or general room wiring. We handle small to medium electrical jobs with absolute precision and no mess.</p>
-            <div class="service-num">01</div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <h3 data-i18n="s1_title">Electrical Fixes & Installs</h3>
+                <p data-i18n="s1_desc">Faulty sockets, new light fixtures, or general room wiring. We handle small to medium electrical jobs with absolute precision and no mess.</p>
+                <div class="service-num">01</div>
+            </div>
+            <div class="service-card reveal">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+                <h3 data-i18n="s2_title">Flawless Wi-Fi & Networks</h3>
+                <p data-i18n="s2_desc">Porto's beautiful stone walls kill Wi-Fi. We install powerful mesh networks and run discrete Ethernet cables to guarantee perfect coverage.</p>
+                <div class="service-num">02</div>
+            </div>
+            <div class="service-card reveal">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <h3 data-i18n="s4_title">Smart Home Setup</h3>
+                <p data-i18n="s4_desc">Professional installation and configuration of smart thermostats, video doorbells, smart lighting, and security cameras.</p>
+                <div class="service-num">03</div>
+            </div>
+            <div class="service-card reveal">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
+                <h3 data-i18n="s3_title">IT & Laptop Repair</h3>
+                <p data-i18n="s3_desc">We diagnose, repair, and upgrade laptops, PCs, and home servers. Don't let tech issues stop your remote work.</p>
+                <div class="service-num">04</div>
+            </div>
+            <div class="service-card reveal">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/></svg>
+                <h3 data-i18n="s5_title">Home Office Optimization</h3>
+                <p data-i18n="s5_desc">Perfect setups for digital nomads. Cable management, multi-monitor configurations, and Uninterruptible Power Supplies (UPS).</p>
+                <div class="service-num">05</div>
+            </div>
+            <div class="service-card reveal">
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                <h3 data-i18n="s6_title">Fast Troubleshooting</h3>
+                <p data-i18n="s6_desc">Power tripping? Internet down? We offer rapid response diagnostics to find the root cause of electrical and tech failures.</p>
+                <div class="service-num">06</div>
+            </div>
         </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
-            <h3 data-i18n="s2_title">Flawless Wi-Fi & Networks</h3>
-            <p data-i18n="s2_desc">Porto's beautiful stone walls kill Wi-Fi. We install powerful mesh networks and run discrete Ethernet cables to guarantee perfect coverage.</p>
-            <div class="service-num">02</div>
-        </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <h3 data-i18n="s4_title">Smart Home Setup</h3>
-            <p data-i18n="s4_desc">Professional installation and configuration of smart thermostats, video doorbells, smart lighting, and security cameras.</p>
-            <div class="service-num">03</div>
-        </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
-            <h3 data-i18n="s3_title">IT & Laptop Repair</h3>
-            <p data-i18n="s3_desc">We diagnose, repair, and upgrade laptops, PCs, and home servers. Don't let tech issues stop your remote work.</p>
-            <div class="service-num">04</div>
-        </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/></svg>
-            <h3 data-i18n="s5_title">Home Office Optimization</h3>
-            <p data-i18n="s5_desc">Perfect setups for digital nomads. Cable management, multi-monitor configurations, and Uninterruptible Power Supplies (UPS).</p>
-            <div class="service-num">05</div>
-        </div>
-        <div class="service-card reveal">
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            <h3 data-i18n="s6_title">Fast Troubleshooting</h3>
-            <p data-i18n="s6_desc">Power tripping? Internet down? We offer rapid response diagnostics to find the root cause of electrical and tech failures.</p>
-            <div class="service-num">06</div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<div class="gold-divider"></div>
+    <div class="gold-divider"></div>
 
-<section class="why">
-    <div class="why-image reveal">
-        <img src="tech-setup.jpg" alt="Home tech and electrical setup" loading="lazy">
-    </div>
-    <div class="why-content">
-        <div class="section-label reveal" data-i18n="why_label">Why choose us</div>
-        <h2 class="section-title reveal" data-i18n="why_title">The communication<br>you expect.<br>The skills you need.</h2>
-        <p class="section-sub reveal" data-i18n="why_sub">We understand the frustration of finding reliable, English-speaking tradespeople in Portugal. We arrive on time, respect your home, and solve complex tech and electrical issues so you can get back to your life.</p>
-        <div class="why-stats">
-            <div class="stat reveal"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat1">Fluent English</div></div>
-            <div class="stat reveal"><div class="stat-num">Dual</div><div class="stat-label" data-i18n="stat2">Electrical & Tech</div></div>
-            <div class="stat reveal"><div class="stat-num">Zero</div><div class="stat-label" data-i18n="stat3">Mess Left Behind</div></div>
-            <div class="stat reveal"><div class="stat-num">Fast</div><div class="stat-label" data-i18n="stat4">Response Times</div></div>
+    <section class="why">
+        <div class="why-image reveal">
+            <img src="tech-setup.jpg" alt="Home tech and electrical setup" loading="lazy">
         </div>
-    </div>
-</section>
+        <div class="why-content">
+            <div class="section-label reveal" data-i18n="why_label">Why choose us</div>
+            <h2 class="section-title reveal" data-i18n="why_title">The communication<br>you expect.<br>The skills you need.</h2>
+            <p class="section-sub reveal" data-i18n="why_sub">We understand the frustration of finding reliable, English-speaking tradespeople in Portugal. We arrive on time, respect your home, and solve complex tech and electrical issues so you can get back to your life.</p>
+            <div class="why-stats">
+                <div class="stat reveal"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stat1">Fluent English</div></div>
+                <div class="stat reveal"><div class="stat-num">Dual</div><div class="stat-label" data-i18n="stat2">Electrical & Tech</div></div>
+                <div class="stat reveal"><div class="stat-num">Zero</div><div class="stat-label" data-i18n="stat3">Mess Left Behind</div></div>
+                <div class="stat reveal"><div class="stat-num">Fast</div><div class="stat-label" data-i18n="stat4">Response Times</div></div>
+            </div>
+        </div>
+    </section>
 
-<section class="process">
-    <div class="process-header">
-        <div class="section-label reveal" data-i18n="process_label">How it works</div>
-        <h2 class="section-title reveal" data-i18n="process_title">Simple & transparent</h2>
-        <p class="section-sub reveal" data-i18n="process_sub">No guesswork, just clear communication and results.</p>
-    </div>
-    <div class="process-steps">
-        <div class="process-step reveal"><div class="step-circle">I</div><h4 data-i18n="p1_title">Reach Out</h4><p data-i18n="p1_desc">Send a WhatsApp message explaining your issue or project.</p></div>
-        <div class="process-step reveal"><div class="step-circle">II</div><h4 data-i18n="p2_title">Quick Quote</h4><p data-i18n="p2_desc">For most small jobs, we can give you a transparent price instantly.</p></div>
-        <div class="process-step reveal"><div class="step-circle">III</div><h4 data-i18n="p3_title">The Fix</h4><p data-i18n="p3_desc">We arrive on time, fix the problem, and leave the area pristine.</p></div>
-        <div class="process-step reveal"><div class="step-circle">IV</div><h4 data-i18n="p4_title">Peace of Mind</h4><p data-i18n="p4_desc">You get back to your remote work or enjoying your home.</p></div>
-    </div>
-</section>
+    <section class="process">
+        <div class="process-header">
+            <div class="section-label reveal" data-i18n="process_label">How it works</div>
+            <h2 class="section-title reveal" data-i18n="process_title">Simple & transparent</h2>
+            <p class="section-sub reveal" data-i18n="process_sub">No guesswork, just clear communication and results.</p>
+        </div>
+        <div class="process-steps">
+            <div class="process-step reveal"><div class="step-circle">I</div><h4 data-i18n="p1_title">Reach Out</h4><p data-i18n="p1_desc">Send a WhatsApp message explaining your issue or project.</p></div>
+            <div class="process-step reveal"><div class="step-circle">II</div><h4 data-i18n="p2_title">Quick Quote</h4><p data-i18n="p2_desc">For most small jobs, we can give you a transparent price instantly.</p></div>
+            <div class="process-step reveal"><div class="step-circle">III</div><h4 data-i18n="p3_title">The Fix</h4><p data-i18n="p3_desc">We arrive on time, fix the problem, and leave the area pristine.</p></div>
+            <div class="process-step reveal"><div class="step-circle">IV</div><h4 data-i18n="p4_title">Peace of Mind</h4><p data-i18n="p4_desc">You get back to your remote work or enjoying your home.</p></div>
+        </div>
+    </section>
 
-<div class="strip">
-    <div class="strip-text" data-i18n="strip_quote">"Your home tech should just work. We make sure it does."</div>
-    <a href="#" class="btn-dark" id="strip-cta">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-        <span data-i18n="schedule_visit">Message Us Today</span>
-    </a>
-</div>
+    <section class="faq" id="faq">
+        <div class="section-label reveal" data-i18n="faq_label" style="text-align: center;">Questions & Answers</div>
+        <h2 class="section-title reveal" data-i18n="faq_title" style="text-align: center; margin-bottom: 4rem;">Common queries</h2>
+        <div class="faq-grid">
+            <div class="faq-item reveal">
+                <div class="faq-q" data-i18n="faq1_q">Do you provide electrical services for expats in Porto?</div>
+                <div class="faq-a" data-i18n="faq1_a">Yes, we specialize in helping expats and digital nomads. We speak fluent English to ensure clear communication and no misunderstandings regarding your home tech or electrical needs.</div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-q" data-i18n="faq2_q">How do I fix Wi-Fi in a Portuguese stone house?</div>
+                <div class="faq-a" data-i18n="faq2_a">Thick stone walls in traditional Portuguese homes block standard Wi-Fi router signals. We solve this by installing multi-node mesh networks or running discreet Ethernet cables to ensure fast, seamless coverage in every room.</div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-q" data-i18n="faq3_q">What areas do you serve?</div>
+                <div class="faq-a" data-i18n="faq3_a">We are based in Porto and provide mobile services across Porto, Vila Nova de Gaia, Matosinhos, and the surrounding metropolitan areas.</div>
+            </div>
+        </div>
+    </section>
 
-<section class="contact" id="contact">
-    <div class="section-label reveal" data-i18n="contact_label">Contact</div>
-    <h2 class="section-title reveal" data-i18n="contact_title">Have an issue?</h2>
-    <p class="section-sub reveal" data-i18n="contact_sub">Send us a message. We serve Porto, Gaia, Matosinhos, and surrounding areas.</p>
-    <div class="contact-actions">
-        <a href="#" class="btn-primary" id="contact-wa">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-            <span data-i18n="wa_now">WhatsApp Now</span>
+    <div class="strip">
+        <div class="strip-text" data-i18n="strip_quote">"Your home tech should just work. We make sure it does."</div>
+        <a href="#" class="btn-dark" id="strip-cta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+            <span data-i18n="schedule_visit">Message Us Today</span>
         </a>
-        <a href="mailto:gabrielrdavid@gmail.com" class="btn-secondary">gabrielrdavid@gmail.com</a>
     </div>
-</section>
+
+    <section class="contact" id="contact">
+        <div class="section-label reveal" data-i18n="contact_label">Contact</div>
+        <h2 class="section-title reveal" data-i18n="contact_title">Have an issue?</h2>
+        <p class="section-sub reveal" data-i18n="contact_sub">Send us a message. We serve Porto, Gaia, Matosinhos, and surrounding areas.</p>
+        <div class="contact-actions">
+            <a href="#" class="btn-primary" id="contact-wa">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                <span data-i18n="wa_now">WhatsApp Now</span>
+            </a>
+            <a href="mailto:gabrielrdavid@gmail.com" class="btn-secondary">gabrielrdavid@gmail.com</a>
+        </div>
+    </section>
+</main>
 
 <footer>
-    <div class="footer-logo">Drivenb<span>.</span> <span data-i18n="footer_name">Electrical Installation</span></div>
-    <p>&copy; 2026 · Porto, Portugal</p>
-    <div style="display:flex;gap:1.5rem;">
-        <a href="mailto:gabrielrdavid@gmail.com">Email</a>
+    <div class="footer-info">
+        <div class="footer-logo">Drivenb<span>.</span> <span data-i18n="footer_name">Electrical Installation</span></div>
+        <address style="font-style: normal; margin-top: 1rem;">
+            <p><strong>Drivenb Home Tech</strong></p>
+            <p>Porto, Portugal</p>
+            <p style="margin-top:0.5rem">Phone/WhatsApp: <a href="tel:+351933657905" style="color:var(--gold);">+351 933 657 905</a></p>
+            <p>Email: <a href="mailto:gabrielrdavid@gmail.com">gabrielrdavid@gmail.com</a></p>
+        </address>
+        <p style="margin-top: 2rem;">&copy; 2026 · Porto, Portugal</p>
+    </div>
+    <div class="footer-links">
+        <a href="mailto:gabrielrdavid@gmail.com">Email Us</a>
         <a href="#" id="footer-wa">WhatsApp</a>
+        <a href="tools.html" data-i18n="nav_tools_link">Calculators</a>
     </div>
 </footer>
 
@@ -388,6 +426,10 @@ const i18n = {
         process_label:"How it works", process_title:"Simple & transparent", process_sub:"No guesswork, just clear communication and results.",
         p1_title:"Reach Out", p1_desc:"Send a WhatsApp message explaining your issue or project.", p2_title:"Quick Quote", p2_desc:"For most small jobs, we can give you a transparent price instantly.",
         p3_title:"The Fix", p3_desc:"We arrive on time, fix the problem, and leave the area pristine.", p4_title:"Peace of Mind", p4_desc:"You get back to your remote work or enjoying your home.",
+        faq_label:"Questions & Answers", faq_title:"Common queries",
+        faq1_q:"Do you provide electrical services for expats in Porto?", faq1_a:"Yes, we specialize in helping expats and digital nomads. We speak fluent English to ensure clear communication and no misunderstandings regarding your home tech or electrical needs.",
+        faq2_q:"How do I fix Wi-Fi in a Portuguese stone house?", faq2_a:"Thick stone walls in traditional Portuguese homes block standard Wi-Fi router signals. We solve this by installing multi-node mesh networks or running discreet Ethernet cables to ensure fast, seamless coverage in every room.",
+        faq3_q:"What areas do you serve?", faq3_a:"We are based in Porto and provide mobile services across Porto, Vila Nova de Gaia, Matosinhos, and the surrounding metropolitan areas.",
         strip_quote:'"Your home tech should just work. We make sure it does."', schedule_visit:"Message Us Today", contact_label:"Contact", contact_title:"Have an issue?",
         contact_sub:"Send us a message. We serve Porto, Gaia, Matosinhos, and surrounding areas.", wa_now:"WhatsApp Now", wa_tooltip:"Need help? Message us", footer_name:"Electrical Installation"
     },
@@ -407,6 +449,10 @@ const i18n = {
         process_label:"Como funciona", process_title:"Simples e transparente", process_sub:"Sem surpresas, apenas comunicação clara e resultados.",
         p1_title:"Contacto", p1_desc:"Envie mensagem por WhatsApp a explicar o seu problema.", p2_title:"Orçamento Rápido", p2_desc:"Para pequenos trabalhos, damos um preço transparente na hora.",
         p3_title:"A Intervenção", p3_desc:"Chegamos a horas, resolvemos a situação e deixamos tudo limpo.", p4_title:"Tranquilidade", p4_desc:"Volte ao seu trabalho remoto ou a desfrutar do seu espaço.",
+        faq_label:"Perguntas Frequentes", faq_title:"Dúvidas comuns",
+        faq1_q:"Oferecem serviços para expatriados no Porto?", faq1_a:"Sim, ajudamos expatriados e nómadas digitais. Falamos inglês fluente para garantir uma comunicação clara sobre as suas necessidades elétricas ou tecnológicas.",
+        faq2_q:"Como resolver o problema de Wi-Fi em casas de pedra?", faq2_a:"As paredes espessas de pedra bloqueiam o sinal Wi-Fi. Resolvemos isso instalando redes mesh multi-nó ou cabos Ethernet discretos para garantir cobertura rápida em todas as divisões.",
+        faq3_q:"Que zonas servem?", faq3_a:"Estamos sediados no Porto e prestamos serviços ao domicílio no Porto, Vila Nova de Gaia, Matosinhos e áreas metropolitanas circundantes.",
         strip_quote:'"A tecnologia da sua casa deve simplesmente funcionar."', schedule_visit:"Envie Mensagem Hoje", contact_label:"Contacto", contact_title:"Tem algum problema?",
         contact_sub:"Envie-nos mensagem. Servimos o Porto, Gaia, Matosinhos e arredores.", wa_now:"WhatsApp Agora", wa_tooltip:"Precisa de ajuda? Fale connosco", footer_name:"Instalações Elétricas"
     }
